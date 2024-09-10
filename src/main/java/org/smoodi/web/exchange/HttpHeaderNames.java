@@ -73,7 +73,7 @@ public enum HttpHeaderNames {
 
     // Response
     ALLOW("Allow"),
-    SERVER("Server"),
+    SERVER("ListeningServer"),
 
     // Security
     CROSS_ORIGIN_RESOURCE_POLICY("Cross-Origin-Resource-Policy"),
