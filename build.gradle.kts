@@ -19,7 +19,21 @@ java {
 }
 
 dependencies {
-    implementation("org.smoodi.framework:smoodi-core:0.0.1-ALPHA")
+    api("org.smoodi.framework:smoodi-core:0.0.5-SNAPSHOT")
+
+    // Jackson
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.5")
+
+    // Logger
+    api("org.slf4j:slf4j-api:2.0.9")
+    implementation("ch.qos.logback:logback-core:1.4.14")
+    implementation("ch.qos.logback:logback-classic:1.4.14")
+
+    // Lombok
+    compileOnly("org.projectlombok:lombok:1.18.30")
+    annotationProcessor("org.projectlombok:lombok:1.18.30")
+
+    // Test
 
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
@@ -48,7 +62,7 @@ publishing {
 
             groupId = "org.smoodi.framework"
             artifactId = "smoodi-web"
-            version = "0.0.1-SNAPSHOT"
+            version = "0.0.1-ALPHA"
 
             pom {
                 name.set("Smoodi Framework Web")
