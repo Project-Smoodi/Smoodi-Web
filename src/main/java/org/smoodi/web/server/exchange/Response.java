@@ -1,6 +1,6 @@
-package org.smoodi.web.exchange;
+package org.smoodi.web.server.exchange;
 
-public interface Request {
+public interface Response {
 
     int getPort();
 

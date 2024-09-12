@@ -1,4 +1,4 @@
-package org.smoodi.web.exchange;
+package org.smoodi.web.server.exchange;
 
 import java.util.HashMap;
 import java.util.Map;
