@@ -1,6 +1,6 @@
-package org.smoodi.web;
+package org.smoodi.web.server;
 
-import org.smoodi.web.net.ListeningServer;
+import org.smoodi.web.server.net.ListeningServer;
 
 public interface ServerGateway extends Gateway {
 

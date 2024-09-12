@@ -1,8 +1,8 @@
-package org.smoodi.web.net;
+package org.smoodi.web.server.net;
 
 import com.sun.net.httpserver.HttpExchange;
-import org.smoodi.web.exchange.HttpRequest;
-import org.smoodi.web.exchange.HttpResponse;
+import org.smoodi.web.server.exchange.HttpRequest;
+import org.smoodi.web.server.exchange.HttpResponse;
 
 import java.util.Map;
 
