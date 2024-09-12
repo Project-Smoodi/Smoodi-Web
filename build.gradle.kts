@@ -19,7 +19,7 @@ java {
 }
 
 dependencies {
-    api("org.smoodi.framework:smoodi-core:0.0.3-ALPHA")
+    api("org.smoodi.framework:smoodi-core:0.0.5-SNAPSHOT")
 
     // Jackson
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.5")
