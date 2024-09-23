@@ -1,5 +1,7 @@
 package org.smoodi.web.server.exchange;
 
+import java.util.Map;
+
 public interface HttpRequest extends Request {
 
     /**
@@ -35,9 +37,17 @@ public interface HttpRequest extends Request {
     boolean isSecureProtocol();
 
     /**
+     * <p>Return the http method of request.</p>
+     *
+     * @return The http method of request.
+     * @see HttpMethod
+     */
+    HttpMethod getMethod();
+
+    /**
      * <p>Return the content of request.</p>
      *
-     * <p>Depending on the {@code Content-Type(Http Header)}, it can be cast as a specific type.</p>
+     * <p>Depending on the {@code Content-Type} in {@link HttpRequest#getHeaders() http headers}, it can be cast as a specific type.</p>
      *
      * <p>Like this:</p>
      * <table>
@@ -74,6 +84,13 @@ public interface HttpRequest extends Request {
     HttpHeaders getHeaders();
 
     /**
+     * <p>Return URL parameters of request.</p>
+     *
+     * @return URL parameters of request by String Key-Value.
+     */
+    Map<String, String> getParams();
+
+    /**
      * <p>Return the path of request.</p>
      *
      * <p>It's part of URL.</p>
@@ -81,12 +98,4 @@ public interface HttpRequest extends Request {
      * @return The path of request. ex) When {@link HttpRequest#getUrl()} is {@code http://localhost:8080/home?key=value}, then {@code /home}
      */
     String getPath();
-
-    /**
-     * <p>Return the http method of request.</p>
-     *
-     * @return The http method of request.
-     * @see HttpMethod
-     */
-    HttpMethod getMethod();
 }
