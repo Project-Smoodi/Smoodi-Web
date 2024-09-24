@@ -47,7 +47,7 @@ public interface HttpResponse extends Response {
      * <p>Return headers of response.</p>
      *
      * @return Headers of response.
-     * @see HttpHeaders
+     * @see MapbleHttpHeaders
      */
     @EmptyableArray
     @NotNull

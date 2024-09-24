@@ -1,39 +1,35 @@
 package org.smoodi.net.exchange;
 
-import lombok.RequiredArgsConstructor;
 import org.smoodi.annotation.NotNull;
 import org.smoodi.annotation.Nullable;
 
-@RequiredArgsConstructor
-public class HttpHeaders extends Headers {
+/**
+ * <p>HTTP Header VO.</p>
+ *
+ * <p>Include more getters with {@link HttpHeaderNames}</p>
+ *
+ * @author Daybreak312
+ * @see HttpHeaderNames
+ * @see Headers
+ * @since v0.0.1
+ */
+public interface HttpHeaders extends Headers {
 
     @Nullable
-    public String get(@NotNull final HttpHeaderNames key) {
-        return get(key.toString());
-    }
+    String get(@NotNull final HttpHeaderNames key);
 
     @Nullable
-    public String contentType() {
-        return get(HttpHeaderNames.CONTENT_TYPE);
-    }
+    String contentType();
 
     @Nullable
-    public String contentEncoding() {
-        return get(HttpHeaderNames.CONTENT_ENCODING);
-    }
+    String contentEncoding();
 
     @Nullable
-    public String contentLanguage() {
-        return get(HttpHeaderNames.CONTENT_LANGUAGE);
-    }
+    String contentLanguage();
 
     @Nullable
-    public String authorization() {
-        return get(HttpHeaderNames.AUTHORIZATION);
-    }
+    String authorization();
 
     @Nullable
-    public String location() {
-        return get(HttpHeaderNames.LOCATION);
-    }
+    String location();
 }

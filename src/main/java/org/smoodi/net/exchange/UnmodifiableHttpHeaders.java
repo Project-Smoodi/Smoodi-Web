@@ -2,7 +2,7 @@ package org.smoodi.net.exchange;
 
 import java.lang.instrument.UnmodifiableModuleException;
 
-public class UnmodifiableHttpHeaders extends HttpHeaders {
+public class UnmodifiableHttpHeaders extends MapbleHttpHeaders {
 
     @Override
     public void set(String key, String value) {
