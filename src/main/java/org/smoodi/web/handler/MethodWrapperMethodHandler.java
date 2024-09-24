@@ -2,10 +2,10 @@ package org.smoodi.web.handler;
 
 import lombok.Getter;
 import org.smoodi.web.handler.annotation.RequestPath;
-import org.smoodi.web.server.exchange.ContentType;
-import org.smoodi.web.server.exchange.HttpRequest;
-import org.smoodi.web.server.exchange.Request;
-import org.smoodi.web.server.exchange.Response;
+import org.smoodi.net.exchange.ContentType;
+import org.smoodi.net.exchange.HttpRequest;
+import org.smoodi.net.exchange.Request;
+import org.smoodi.net.exchange.Response;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;

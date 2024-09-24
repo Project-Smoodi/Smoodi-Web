@@ -1,7 +1,7 @@
 package org.smoodi.web.handler;
 
-import org.smoodi.web.server.exchange.Request;
-import org.smoodi.web.server.exchange.Response;
+import org.smoodi.net.exchange.Request;
+import org.smoodi.net.exchange.Response;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;

@@ -1,8 +1,6 @@
-package org.smoodi.web.server.exchange;
+package org.smoodi.net.exchange;
 
 import lombok.RequiredArgsConstructor;
-
-import java.util.Map;
 
 @RequiredArgsConstructor
 public class HttpHeaders extends Headers {

@@ -1,4 +1,4 @@
-package org.smoodi.web.config;
+package org.smoodi.net.config;
 
 import org.smoodi.core.annotation.SmoodiDefaultConfiguration;
 

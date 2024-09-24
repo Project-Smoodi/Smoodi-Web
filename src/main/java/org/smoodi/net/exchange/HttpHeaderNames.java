@@ -1,4 +1,4 @@
-package org.smoodi.web.server.exchange;
+package org.smoodi.net.exchange;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

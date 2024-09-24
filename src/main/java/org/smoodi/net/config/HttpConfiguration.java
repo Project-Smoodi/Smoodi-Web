@@ -1,4 +1,4 @@
-package org.smoodi.web.config;
+package org.smoodi.net.config;
 
 /**
  * HTTP에 관련된 설정 인터페이스
