@@ -1,11 +1,16 @@
 package org.smoodi.web.server.exchange;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Headers {
 
     private final Map<String, String> headers = new HashMap<>();
+
+    public Map<String, String> toMap() {
+        return Collections.unmodifiableMap(headers);
+    }
 
     public String get(final String key) {
         return headers.get(key);
