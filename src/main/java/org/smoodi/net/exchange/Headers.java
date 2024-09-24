@@ -2,6 +2,10 @@ package org.smoodi.net.exchange;
 
 import org.smoodi.annotation.NotNull;
 import org.smoodi.annotation.Nullable;
+import org.smoodi.annotation.array.EmptyableArray;
+import org.smoodi.annotation.array.UnmodifiableArray;
+
+import java.util.Map;
 
 /**
  * <p>Header VO.</p>
@@ -24,4 +28,9 @@ public interface Headers {
     void remove(@NotNull final String key);
 
     void clear();
+
+    @EmptyableArray
+    @UnmodifiableArray
+    @NotNull
+    Map<String, String> toMap();
 }

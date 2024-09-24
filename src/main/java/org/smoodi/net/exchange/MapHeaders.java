@@ -19,13 +19,6 @@ public class MapHeaders implements Headers {
 
     private final Map<String, String> headers = new HashMap<>();
 
-    @EmptyableArray
-    @UnmodifiableArray
-    @NotNull
-    public Map<String, String> toMap() {
-        return Map.copyOf(headers);
-    }
-
     @Override
     @Nullable
     public String get(@NotNull final String key) {
@@ -67,5 +60,13 @@ public class MapHeaders implements Headers {
     @Override
     public void clear() {
         headers.clear();
+    }
+
+    @EmptyableArray
+    @UnmodifiableArray
+    @NotNull
+    @Override
+    public Map<String, String> toMap() {
+        return Map.copyOf(headers);
     }
 }
