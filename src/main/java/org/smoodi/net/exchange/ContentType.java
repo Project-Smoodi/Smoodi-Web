@@ -3,7 +3,9 @@ package org.smoodi.net.exchange;
 import lombok.AllArgsConstructor;
 
 /**
- * <p>HTTP 패킷 내용의 형식 정보.</p>
+ * <p>Content type of HTTP packet.</p>
+ *
+ * <p>It's included in {@code Content-Type} header.</p>
  *
  * @author Daybreak312
  * @since v0.0.1
