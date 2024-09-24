@@ -40,14 +40,14 @@ public class MapHeaders implements Headers {
         return new MapHeaders();
     }
 
-    @Override
     @Nullable
+    @Override
     public String get(@NotNull final String key) {
         return headers.get(key);
     }
 
-    @Override
     @NotNull
+    @Override
     public String get(@NotNull final String key, @NotNull final String defaultValue) {
         Objects.requireNonNull(key);
         Objects.requireNonNull(defaultValue);
