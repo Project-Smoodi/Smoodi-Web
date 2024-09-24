@@ -1,6 +1,9 @@
 package org.smoodi.web.handler;
 
 import lombok.Getter;
+import org.smoodi.annotation.NotNull;
+import org.smoodi.annotation.array.EmptyableArray;
+import org.smoodi.annotation.array.UnmodifiableArray;
 import org.smoodi.web.handler.annotation.RequestPath;
 import org.smoodi.net.exchange.ContentType;
 import org.smoodi.net.exchange.HttpRequest;
@@ -19,6 +22,7 @@ public class MethodWrapperMethodHandler implements RequestPathHandler, MethodHan
 
     private final RequestPath requestPath;
 
+    @EmptyableArray
     private final Parameter[] parameters;
 
     public MethodWrapperMethodHandler(
@@ -30,6 +34,8 @@ public class MethodWrapperMethodHandler implements RequestPathHandler, MethodHan
         this.parameters = method.getParameters();
     }
 
+    @EmptyableArray
+    @UnmodifiableArray
     @Override
     public List<Parameter> getParameters() {
         return Arrays.stream(parameters.clone()).toList();
@@ -55,11 +61,15 @@ public class MethodWrapperMethodHandler implements RequestPathHandler, MethodHan
         return requestPath.path();
     }
 
+    @EmptyableArray
+    @UnmodifiableArray
     @Override
     public List<String> params() {
         return List.of(this.requestPath.params());
     }
 
+    @EmptyableArray
+    @UnmodifiableArray
     @Override
     public List<String> getHeaders() {
         return List.of(this.requestPath.headers());
@@ -71,7 +81,7 @@ public class MethodWrapperMethodHandler implements RequestPathHandler, MethodHan
     }
 
     @Override
-    public boolean supports(final Request request) {
+    public boolean supports(@NotNull final Request request) {
         if (!(request instanceof HttpRequest)) {
             return false;
         }
@@ -98,7 +108,7 @@ public class MethodWrapperMethodHandler implements RequestPathHandler, MethodHan
     }
 
     @Override
-    public Response handle(Request request) {
+    public Response handle(@NotNull Request request) {
 
         // TODO("Handler..")
         return null;

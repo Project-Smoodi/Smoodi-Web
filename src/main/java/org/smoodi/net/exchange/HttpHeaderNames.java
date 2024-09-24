@@ -3,6 +3,12 @@ package org.smoodi.net.exchange;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * <p>표준 HTTP 헤더 이름들.</p>
+ *
+ * @author Daybreak312
+ * @since v0.0.1
+ */
 @Getter
 @AllArgsConstructor
 public enum HttpHeaderNames {

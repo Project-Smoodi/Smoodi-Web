@@ -2,6 +2,12 @@ package org.smoodi.net.exchange;
 
 import lombok.AllArgsConstructor;
 
+/**
+ * <p>HTTP 패킷 내용의 형식 정보.</p>
+ *
+ * @author Daybreak312
+ * @since v0.0.1
+ */
 @AllArgsConstructor
 public enum ContentType {
 

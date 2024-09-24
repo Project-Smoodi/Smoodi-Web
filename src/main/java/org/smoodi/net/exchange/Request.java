@@ -1,5 +1,16 @@
 package org.smoodi.net.exchange;
 
+import org.smoodi.annotation.NotNull;
+import org.smoodi.annotation.Nullable;
+import org.smoodi.annotation.array.EmptyableArray;
+import org.smoodi.annotation.array.UnmodifiableArray;
+
+/**
+ * <p>The request sent by client.</p>
+ *
+ * @author Daybreak312
+ * @since v0.0.1
+ */
 public interface Request {
 
     /**
@@ -7,6 +18,7 @@ public interface Request {
      *
      * @return The IP Address of client. ex) {@code 127.0.0.1}
      */
+    @NotNull
     String getIpAddress();
 
     /**
@@ -14,6 +26,7 @@ public interface Request {
      *
      * @return The content of request.
      */
+    @Nullable
     Object getContent();
 
     /**
@@ -22,5 +35,8 @@ public interface Request {
      * @return Headers of request.
      * @see Headers
      */
+    @EmptyableArray
+    @UnmodifiableArray
+    @NotNull
     Headers getHeaders();
 }
