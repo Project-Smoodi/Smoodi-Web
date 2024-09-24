@@ -4,18 +4,22 @@ import lombok.Getter;
 import org.smoodi.annotation.NotNull;
 import org.smoodi.annotation.array.EmptyableArray;
 import org.smoodi.annotation.array.UnmodifiableArray;
-import org.smoodi.web.handler.annotation.RequestPath;
 import org.smoodi.net.exchange.ContentType;
 import org.smoodi.net.exchange.HttpRequest;
 import org.smoodi.net.exchange.Request;
 import org.smoodi.net.exchange.Response;
+import org.smoodi.web.handler.annotation.RequestPath;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class MethodWrapperMethodHandler implements RequestPathHandler, MethodHandler {
+
+    @Getter
+    private final Object declaredObject;
 
     @Getter
     private final Method method;
@@ -25,13 +29,19 @@ public class MethodWrapperMethodHandler implements RequestPathHandler, MethodHan
     @EmptyableArray
     private final Parameter[] parameters;
 
+    private final MethodHandlerInvoker invoker;
+
     public MethodWrapperMethodHandler(
-            final Method method,
-            final RequestPath requestPath
+            @NotNull final Object object,
+            @NotNull final Method method,
+            @NotNull final RequestPath requestPath,
+            @NotNull final MethodHandlerInvoker invoker
     ) {
-        this.method = method;
-        this.requestPath = requestPath;
+        this.declaredObject = Objects.requireNonNull(object);
+        this.method = Objects.requireNonNull(method);
+        this.requestPath = Objects.requireNonNull(requestPath);
         this.parameters = method.getParameters();
+        this.invoker = Objects.requireNonNull(invoker);
     }
 
     @EmptyableArray
@@ -108,9 +118,7 @@ public class MethodWrapperMethodHandler implements RequestPathHandler, MethodHan
     }
 
     @Override
-    public Response handle(@NotNull Request request) {
-
-        // TODO("Handler..")
-        return null;
+    public void handle(@NotNull Request request, @NotNull Response response) {
+        invoker.invoke(this, Objects.requireNonNull(request), Objects.requireNonNull(response));
     }
 }
