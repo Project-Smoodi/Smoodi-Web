@@ -3,7 +3,7 @@ package org.smoodi.net.exchange;
 import org.smoodi.annotation.NotNull;
 import org.smoodi.annotation.Nullable;
 import org.smoodi.annotation.array.EmptyableArray;
-import org.smoodi.annotation.array.UnmodifiableArray;
+import org.smoodi.annotation.array.ModifiableArray;
 
 /**
  * <p>The response for send to the client.</p>
@@ -30,13 +30,20 @@ public interface Response {
     Object getContent();
 
     /**
+     * <p>Set content of the response to be sent to the client.</p>
+     *
+     * @param content Content of the response for set.
+     */
+    void setContent(@Nullable Object content);
+
+    /**
      * <p>Return headers of response.</p>
      *
      * @return Headers of response.
      * @see Headers
      */
     @EmptyableArray
-    @UnmodifiableArray
+    @ModifiableArray
     @NotNull
     Headers getHeaders();
 }
