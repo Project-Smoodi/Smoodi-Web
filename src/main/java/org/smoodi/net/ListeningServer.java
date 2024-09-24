@@ -1,7 +1,7 @@
-package org.smoodi.web.server.net;
+package org.smoodi.net;
 
-import org.smoodi.web.server.exchange.Request;
-import org.smoodi.web.server.exchange.Response;
+import org.smoodi.net.exchange.Request;
+import org.smoodi.net.exchange.Response;
 
 import java.util.function.Function;
 

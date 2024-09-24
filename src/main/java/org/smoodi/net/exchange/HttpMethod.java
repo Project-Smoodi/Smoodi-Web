@@ -1,7 +1,13 @@
-package org.smoodi.web.server.exchange;
+package org.smoodi.net.exchange;
 
 import lombok.AllArgsConstructor;
 
+/**
+ * <p>표준 HTTP 메소드.</p>
+ *
+ * @author Daybreak312
+ * @since v0.0.1
+ */
 @AllArgsConstructor
 public enum HttpMethod {
 

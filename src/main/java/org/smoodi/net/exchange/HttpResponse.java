@@ -1,5 +1,15 @@
-package org.smoodi.web.server.exchange;
+package org.smoodi.net.exchange;
 
+import org.smoodi.annotation.NotNull;
+import org.smoodi.annotation.Nullable;
+import org.smoodi.annotation.array.EmptyableArray;
+
+/**
+ * <p>The HTTP response for send to the client.</p>
+ *
+ * @author Daybreak312
+ * @since v0.0.1
+ */
 public interface HttpResponse extends Response {
 
     /**
@@ -29,6 +39,7 @@ public interface HttpResponse extends Response {
      *
      * @return The content of response.
      */
+    @Nullable
     @Override
     Object getContent();
 
@@ -36,8 +47,10 @@ public interface HttpResponse extends Response {
      * <p>Return headers of response.</p>
      *
      * @return Headers of response.
-     * @see HttpHeaders
+     * @see MapHttpHeaders
      */
+    @EmptyableArray
+    @NotNull
     @Override
     HttpHeaders getHeaders();
 }

@@ -1,7 +1,18 @@
-package org.smoodi.web.server.exchange;
+package org.smoodi.net.exchange;
+
+import org.smoodi.annotation.NotNull;
+import org.smoodi.annotation.Nullable;
+import org.smoodi.annotation.array.EmptyableArray;
+import org.smoodi.annotation.array.UnmodifiableArray;
 
 import java.util.Map;
 
+/**
+ * <p>The HTTP request sent by client.</p>
+ *
+ * @author Daybreak312
+ * @since v0.0.1
+ */
 public interface HttpRequest extends Request {
 
     /**
@@ -9,6 +20,7 @@ public interface HttpRequest extends Request {
      *
      * @return The request URL. ex) {@code http://loaclhost:8080/home?key=value}
      */
+    @NotNull
     String getUrl();
 
     /**
@@ -16,8 +28,9 @@ public interface HttpRequest extends Request {
      *
      * <p>It's part of {@link HttpRequest#getUrl()}</p>
      *
-     * @return The host. ex) When {@link HttpRequest#getUrl()} is {@code http://loaclhost:8080/home?key=value}, then {@code localhost:8080}
+     * @return The host. ex) When {@link HttpRequest#getUrl()} is {@code http://loaclhost:8080/home?key=value}, then return {@code localhost:8080}
      */
+    @NotNull
     String getHost();
 
     /**
@@ -25,8 +38,9 @@ public interface HttpRequest extends Request {
      *
      * <p>It's part of {@link HttpRequest#getUrl()}</p>
      *
-     * @return The request URI. ex) When {@link HttpRequest#getUrl()} is {@code http://loaclhost:8080/home?key=value}, then {@code localhost:8080/home}
+     * @return The request URI. ex) When {@link HttpRequest#getUrl()} is {@code http://loaclhost:8080/home?key=value}, then return {@code localhost:8080/home}
      */
+    @NotNull
     String getUri();
 
     /**
@@ -71,6 +85,7 @@ public interface HttpRequest extends Request {
      *
      * @return The content of request.
      */
+    @Nullable
     @Override
     Object getContent();
 
@@ -78,8 +93,11 @@ public interface HttpRequest extends Request {
      * <p>Return headers of request.</p>
      *
      * @return Headers of request.
-     * @see HttpHeaders
+     * @see MapHttpHeaders
      */
+    @EmptyableArray
+    @UnmodifiableArray
+    @NotNull
     @Override
     HttpHeaders getHeaders();
 
@@ -88,6 +106,9 @@ public interface HttpRequest extends Request {
      *
      * @return URL parameters of request by String Key-Value.
      */
+    @EmptyableArray
+    @UnmodifiableArray
+    @NotNull
     Map<String, String> getParams();
 
     /**
@@ -95,7 +116,8 @@ public interface HttpRequest extends Request {
      *
      * <p>It's part of URL.</p>
      *
-     * @return The path of request. ex) When {@link HttpRequest#getUrl()} is {@code http://localhost:8080/home?key=value}, then {@code /home}
+     * @return The path of request. ex) When {@link HttpRequest#getUrl()} is {@code http://localhost:8080/home?key=value}, then return {@code /home}. When {@link HttpRequest#getUrl()} is {@code http://localhost:8080}, then just return {@code /}.
      */
+    @NotNull
     String getPath();
 }

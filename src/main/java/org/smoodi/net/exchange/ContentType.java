@@ -1,7 +1,15 @@
-package org.smoodi.web.server.exchange;
+package org.smoodi.net.exchange;
 
 import lombok.AllArgsConstructor;
 
+/**
+ * <p>Content type of HTTP packet.</p>
+ *
+ * <p>It's included in {@code Content-Type} header.</p>
+ *
+ * @author Daybreak312
+ * @since v0.0.1
+ */
 @AllArgsConstructor
 public enum ContentType {
 

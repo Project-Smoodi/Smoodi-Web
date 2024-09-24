@@ -1,7 +1,7 @@
 package org.smoodi.web.handler.annotation;
 
-import org.smoodi.web.server.exchange.ContentType;
-import org.smoodi.web.server.exchange.HttpMethod;
+import org.smoodi.net.exchange.ContentType;
+import org.smoodi.net.exchange.HttpMethod;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
