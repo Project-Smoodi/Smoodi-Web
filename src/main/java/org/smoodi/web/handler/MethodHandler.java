@@ -1,5 +1,6 @@
 package org.smoodi.web.handler;
 
+import org.smoodi.annotation.NotNull;
 import org.smoodi.net.exchange.Request;
 import org.smoodi.net.exchange.Response;
 
@@ -8,6 +9,8 @@ import java.lang.reflect.Parameter;
 import java.util.List;
 
 public interface MethodHandler extends Handler {
+
+    Object getDeclaredObject();
 
     Method getMethod();
 
@@ -18,8 +21,8 @@ public interface MethodHandler extends Handler {
     String getName();
 
     @Override
-    boolean supports(Request request);
+    boolean supports(@NotNull Request request);
 
     @Override
-    Response handle(Request request);
+    void handle(@NotNull Request request, @NotNull Response response);
 }
