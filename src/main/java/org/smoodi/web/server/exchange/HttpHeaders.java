@@ -2,13 +2,13 @@ package org.smoodi.web.server.exchange;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.Map;
+
 @RequiredArgsConstructor
 public class HttpHeaders extends Headers {
 
-    private final Headers headers;
-
-    public String get(HttpHeaderNames name) {
-        return headers.get(name.toString());
+    public String get(HttpHeaderNames key) {
+        return get(key.toString());
     }
 
     public String contentType() {
