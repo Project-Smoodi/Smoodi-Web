@@ -1,12 +1,16 @@
 package org.smoodi.net.exchange;
 
-import lombok.RequiredArgsConstructor;
 import org.smoodi.annotation.NotNull;
 import org.smoodi.annotation.Nullable;
 import org.smoodi.annotation.Overload;
 
-@RequiredArgsConstructor
-public class MapbleHttpHeaders
+/**
+ * <p>Wrapper class of HTTP headers saved as {@link java.util.Map Map}.</p>
+ *
+ * @author Daybreak312
+ * @since v0.0.1
+ */
+public class MapHttpHeaders
         extends MapHeaders
         implements HttpHeaders {
 

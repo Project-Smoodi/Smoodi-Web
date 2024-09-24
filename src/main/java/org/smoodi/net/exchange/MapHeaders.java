@@ -1,8 +1,11 @@
 package org.smoodi.net.exchange;
 
+import lombok.NoArgsConstructor;
 import org.smoodi.annotation.NotNull;
 import org.smoodi.annotation.Nullable;
+import org.smoodi.annotation.StaticFactoryMethod;
 import org.smoodi.annotation.array.EmptyableArray;
+import org.smoodi.annotation.array.NotEmptyArray;
 import org.smoodi.annotation.array.UnmodifiableArray;
 
 import java.util.HashMap;
@@ -10,14 +13,32 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * <p>Wrapper class of Header saved as Map.</p>
+ * <p>Wrapper class of TCP headers saved as {@link Map}.</p>
  *
  * @author Daybreak312
  * @since v0.0.1
  */
+@NoArgsConstructor
 public class MapHeaders implements Headers {
 
     private final Map<String, String> headers = new HashMap<>();
+
+    public MapHeaders(
+            @NotNull @NotEmptyArray final Map<String, String> headers
+    ) {
+        this.headers.putAll(headers);
+    }
+
+    @StaticFactoryMethod
+    public static MapHeaders of(@NotNull final Map<String, String> headers) {
+        Objects.requireNonNull(headers);
+        return new MapHeaders(headers);
+    }
+
+    @StaticFactoryMethod
+    public static MapHeaders empty() {
+        return new MapHeaders();
+    }
 
     @Override
     @Nullable

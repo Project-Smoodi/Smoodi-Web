@@ -4,9 +4,9 @@ import org.smoodi.annotation.NotNull;
 import org.smoodi.annotation.Nullable;
 
 /**
- * <p>HTTP Header VO.</p>
+ * <p>Wrapper of HTTP headers saved as Key-Value {@link java.util.Collection Collection}.</p>
  *
- * <p>Include more getters with {@link HttpHeaderNames}</p>
+ * <p>Include more getters than {@link Headers}; by {@link HttpHeaderNames}</p>
  *
  * @author Daybreak312
  * @see HttpHeaderNames

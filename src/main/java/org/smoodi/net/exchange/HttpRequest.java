@@ -93,7 +93,7 @@ public interface HttpRequest extends Request {
      * <p>Return headers of request.</p>
      *
      * @return Headers of request.
-     * @see MapbleHttpHeaders
+     * @see MapHttpHeaders
      */
     @EmptyableArray
     @UnmodifiableArray

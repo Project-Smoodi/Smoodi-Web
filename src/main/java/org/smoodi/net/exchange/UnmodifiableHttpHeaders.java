@@ -2,7 +2,14 @@ package org.smoodi.net.exchange;
 
 import java.lang.instrument.UnmodifiableModuleException;
 
-public class UnmodifiableHttpHeaders extends MapbleHttpHeaders {
+/**
+ * <p><b>Unmodifiable</b> wrapper class of HTTP headers saved as {@link java.util.Map Map}.</p>
+ *
+ * @author Daybreak312
+ * @see HttpHeaders
+ * @since v0.0.1
+ */
+public class UnmodifiableHttpHeaders extends MapHttpHeaders {
 
     @Override
     public void set(String key, String value) {
