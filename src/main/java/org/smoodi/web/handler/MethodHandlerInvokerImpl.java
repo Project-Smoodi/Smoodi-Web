@@ -28,7 +28,7 @@ public class MethodHandlerInvokerImpl implements MethodHandlerInvoker {
 
         handler.getParameters().forEach(parameter -> {
             extracted.add(
-                    resolver.resolveArgument((HttpRequest) request,parameter, parameter.getType())
+                    resolver.resolveArgument((HttpRequest) request, parameter, parameter.getType())
             );
         });
 
