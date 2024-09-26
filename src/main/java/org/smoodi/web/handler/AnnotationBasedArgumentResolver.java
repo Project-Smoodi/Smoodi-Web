@@ -18,9 +18,9 @@ public abstract class AnnotationBasedArgumentResolver implements HandlerMethodAr
     @Nullable
     @Override
     public final <T> T resolveArgument(
-            @NotNull HttpRequest request,
-            @NotNull Parameter methodParameter,
-            @NotNull Class<T> paramType
+            @NotNull final HttpRequest request,
+            @NotNull final Parameter methodParameter,
+            @NotNull final Class<T> paramType
     ) {
         Objects.requireNonNull(request);
         Objects.requireNonNull(methodParameter);
@@ -37,9 +37,9 @@ public abstract class AnnotationBasedArgumentResolver implements HandlerMethodAr
 
     @NotNull
     protected abstract <T> T resolveArgumentInternal(
-            @NotNull HttpRequest request,
-            @NotNull Parameter methodParameter,
-            @NotNull Class<T> paramType,
-            @NotNull Annotation annotation
+            @NotNull final HttpRequest request,
+            @NotNull final Parameter methodParameter,
+            @NotNull final Class<T> paramType,
+            @NotNull final Annotation annotation
     );
 }

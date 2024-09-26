@@ -10,8 +10,8 @@ public interface HandlerMethodArgumentResolver {
 
     @Nullable
     <T> T resolveArgument(
-            @NotNull HttpRequest request,
-            @NotNull Parameter methodParameter,
-            @NotNull Class<T> paramType
+            @NotNull final HttpRequest request,
+            @NotNull final Parameter methodParameter,
+            @NotNull final Class<T> paramType
     );
 }
