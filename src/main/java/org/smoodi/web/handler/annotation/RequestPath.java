@@ -3,10 +3,7 @@ package org.smoodi.web.handler.annotation;
 import org.smoodi.net.exchange.ContentType;
 import org.smoodi.net.exchange.HttpMethod;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * <p>요청을 받는 API 메소드임을 표시.</p>
@@ -18,6 +15,7 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
+@Documented
 public @interface RequestPath {
 
     /**
