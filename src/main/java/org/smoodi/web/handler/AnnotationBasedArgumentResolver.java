@@ -8,7 +8,6 @@ import org.smoodi.net.exchange.HttpRequest;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Parameter;
 import java.util.Arrays;
-import java.util.Objects;
 
 @RequiredArgsConstructor
 public abstract class AnnotationBasedArgumentResolver implements HandlerMethodArgumentResolver {
@@ -22,9 +21,6 @@ public abstract class AnnotationBasedArgumentResolver implements HandlerMethodAr
             @NotNull final Parameter methodParameter,
             @NotNull final Class<T> paramType
     ) {
-        Objects.requireNonNull(request);
-        Objects.requireNonNull(methodParameter);
-        Objects.requireNonNull(paramType);
 
         final var annotation = Arrays.stream(methodParameter.getAnnotations())
                 .filter(it -> it.annotationType().equals(targetAnnotation)).findFirst();

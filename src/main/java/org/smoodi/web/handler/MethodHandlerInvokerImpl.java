@@ -20,10 +20,6 @@ public class MethodHandlerInvokerImpl implements MethodHandlerInvoker {
 
     @Override
     public void invoke(@NotNull MethodHandler handler, @NotNull Request request, @NotNull Response response) {
-        Objects.requireNonNull(handler);
-        Objects.requireNonNull(request);
-        Objects.requireNonNull(response);
-
         final List<Object> extracted = new ArrayList<>(handler.getParameterCount());
 
         handler.getParameters().forEach(parameter -> {
