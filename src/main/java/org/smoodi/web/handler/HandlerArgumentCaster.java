@@ -61,21 +61,13 @@ public final class HandlerArgumentCaster {
     }
 
     @NotNull
-    @SneakyThrows({IllegalAccessException.class, InvocationTargetException.class, NoSuchMethodException.class})
+    @SneakyThrows({IllegalAccessException.class, NoSuchMethodException.class})
     private static <T> T resolveEnum(@NotNull final String s, @NotNull final Class<T> type) {
 
         try {
-            return (T)type.getMethod("valueOf", String.class).invoke(null, s);
-        } catch (NoSuchMethodException ignored) {
-            var num = Integer.parseInt(s);
-
-            var arr = (Object[]) type.getMethod("values").invoke(null);
-
-            if (num >= arr.length) {
-                throw new InvalidParameterValueException("Invalid index value " + s + " for enum type " + type.getName());
-            }
-
-            return (T) arr[num];
+            return (T) type.getMethod("valueOf", String.class).invoke(null, s);
+        } catch (InvocationTargetException e) {
+            throw new InvalidParameterValueException("Unknown enum value for " + type.getName());
         }
     }
 }
