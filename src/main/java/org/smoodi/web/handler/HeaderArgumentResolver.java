@@ -39,11 +39,6 @@ public class HeaderArgumentResolver extends AnnotationBasedArgumentResolver {
             }
         }
 
-        if (paramType.equals("".getClass())) {
-            // noinspection unchecked
-            return (T) header;
-        }
-
-        throw new UnsupportedTypeParameterException("Unsupported type for header value: " + paramType.getName());
+        return HandlerArgumentCaster.cast(header, paramType);
     }
 }
