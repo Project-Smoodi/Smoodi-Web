@@ -10,7 +10,6 @@ import org.smoodi.net.exchange.Response;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @RequiredArgsConstructor
 @Module
@@ -22,11 +21,10 @@ public class MethodHandlerInvokerImpl implements MethodHandlerInvoker {
     public void invoke(@NotNull MethodHandler handler, @NotNull Request request, @NotNull Response response) {
         final List<Object> extracted = new ArrayList<>(handler.getParameterCount());
 
-        handler.getParameters().forEach(parameter -> {
-            extracted.add(
-                    resolver.resolveArgument((HttpRequest) request, parameter, parameter.getType())
-            );
-        });
+        handler.getParameters().forEach(parameter ->
+                extracted.add(
+                        resolver.resolveArgument((HttpRequest) request, parameter)
+                ));
 
         try {
             handler.getMethod().invoke(handler.getDeclaredObject(), extracted.toArray());

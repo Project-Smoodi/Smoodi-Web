@@ -18,17 +18,19 @@ public class QueryParamArgumentResolver extends AnnotationBasedArgumentResolver 
 
     @NotNull
     @Override
-    protected <T> T resolveArgumentInternal(
+    protected Object resolveArgumentInternal(
             @NotNull final HttpRequest request,
-            @NotNull final Parameter methodParameter,
-            @NotNull final Class<T> paramType,
+            @NotNull final Parameter parameter,
             @NotNull final Annotation annotation
     ) {
+        assert request != null;
+        assert parameter != null;
+        assert annotation != null;
         assert annotation instanceof QueryParam;
 
         String key = Nullability.firstOrSecondIfBlank(
                 ((QueryParam) annotation).value(),
-                methodParameter.getName()
+                parameter.getName()
         );
 
         String param = request.getParams().get(key);
@@ -37,6 +39,6 @@ public class QueryParamArgumentResolver extends AnnotationBasedArgumentResolver 
             throw new MissingParameterException("Missing Query String Parameter: " + key);
         }
 
-        return HandlerArgumentCaster.cast(param, paramType);
+        return HandlerArgumentCaster.cast(param, parameter.getType());
     }
 }

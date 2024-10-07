@@ -2,7 +2,6 @@ package org.smoodi.web.handler;
 
 import lombok.RequiredArgsConstructor;
 import org.smoodi.annotation.NotNull;
-import org.smoodi.annotation.Nullable;
 import org.smoodi.net.exchange.HttpRequest;
 
 import java.lang.annotation.Annotation;
@@ -22,28 +21,36 @@ public abstract class AnnotationBasedArgumentResolver implements HandlerMethodAr
 
     protected final Class<? extends Annotation> targetAnnotation;
 
-    @Nullable
+    @NotNull
     @Override
-    public final <T> T resolveArgument(
-            @NotNull final HttpRequest request,
-            @NotNull final Parameter methodParameter,
-            @NotNull final Class<T> paramType
-    ) {
+    public final boolean supports(@NotNull final Parameter parameter) {
+        assert parameter != null;
 
-        final var annotation = Arrays.stream(methodParameter.getAnnotations())
+        return Arrays.stream(parameter.getAnnotations())
+                .anyMatch(it -> it.annotationType().equals(targetAnnotation));
+    }
+
+    @NotNull
+    @Override
+    public final Object resolveArgument(
+            @NotNull final HttpRequest request,
+            @NotNull final Parameter parameter
+    ) {
+        assert this.supports(parameter);
+
+        final var annotation = Arrays.stream(parameter.getAnnotations())
                 .filter(it -> it.annotationType().equals(targetAnnotation)).findFirst();
 
         return annotation
                 .map(value ->
-                        resolveArgumentInternal(request, methodParameter, paramType, value))
+                        resolveArgumentInternal(request, parameter, value))
                 .orElse(null);
     }
 
     @NotNull
-    protected abstract <T> T resolveArgumentInternal(
+    protected abstract Object resolveArgumentInternal(
             @NotNull final HttpRequest request,
             @NotNull final Parameter methodParameter,
-            @NotNull final Class<T> paramType,
             @NotNull final Annotation annotation
     );
 }

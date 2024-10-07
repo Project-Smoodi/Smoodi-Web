@@ -9,7 +9,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Parameter;
 
 @Module
-public class HeaderArgumentResolver extends AnnotationBasedArgumentResolver {
+public final class HeaderArgumentResolver extends AnnotationBasedArgumentResolver {
 
     public HeaderArgumentResolver() {
         super(Header.class);
@@ -17,12 +17,14 @@ public class HeaderArgumentResolver extends AnnotationBasedArgumentResolver {
 
     @NotNull
     @Override
-    protected <T> T resolveArgumentInternal(
+    protected Object resolveArgumentInternal(
             @NotNull final HttpRequest request,
-            @NotNull final Parameter methodParameter,
-            @NotNull final Class<T> paramType,
+            @NotNull final Parameter parameter,
             @NotNull final Annotation annotation
     ) {
+        assert request != null;
+        assert parameter != null;
+        assert annotation != null;
         assert annotation instanceof Header;
 
         String header = request.getHeaders().get(((Header) annotation).value());
@@ -32,13 +34,13 @@ public class HeaderArgumentResolver extends AnnotationBasedArgumentResolver {
         }
 
         if (header.isEmpty()) {
-            header = request.getHeaders().get(methodParameter.getName());
+            header = request.getHeaders().get(parameter.getName());
 
             if (header == null) {
-                throw new MissingParameterException("Missing Header: " + methodParameter.getName());
+                throw new MissingParameterException("Missing Header: " + parameter.getName());
             }
         }
 
-        return HandlerArgumentCaster.cast(header, paramType);
+        return HandlerArgumentCaster.cast(header, parameter.getType());
     }
 }
