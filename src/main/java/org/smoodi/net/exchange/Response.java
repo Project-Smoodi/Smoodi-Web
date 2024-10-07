@@ -9,17 +9,18 @@ import org.smoodi.annotation.array.ModifiableArray;
  * <p>The response for send to the client.</p>
  *
  * @author Daybreak312
+ * @see Request
  * @since v0.0.1
  */
 public interface Response {
 
     /**
-     * <p>Return the IP Address of Client.</p>
+     * <p>Return the Address of Client.</p>
      *
-     * @return The IP Address of client. ex) {@code 127.0.0.1}
+     * @return The Address of client. ex) {@code 127.0.0.1}(IPv4)
      */
     @NotNull
-    String getIpAddress();
+    String getAddress();
 
     /**
      * <p>Return the content of response.</p>
