@@ -9,6 +9,14 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Parameter;
 import java.util.Arrays;
 
+/**
+ * <p>매개변수에 부착된 어노테이션을 기반으로 값을 주입하는 {@link HandlerMethodArgumentResolver}</p>
+ *
+ * @author Daybreak312
+ * @see MethodHandler
+ * @see HandlerMethodArgumentResolver
+ * @since 0.0.1
+ */
 @RequiredArgsConstructor
 public abstract class AnnotationBasedArgumentResolver implements HandlerMethodArgumentResolver {
 

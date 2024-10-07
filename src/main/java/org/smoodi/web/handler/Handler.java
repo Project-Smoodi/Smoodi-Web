@@ -5,7 +5,7 @@ import org.smoodi.net.exchange.Request;
 import org.smoodi.net.exchange.Response;
 
 /**
- * <p>{@link org.smoodi.web.handler.annotation.Handler Handler}를 Smoodi에서 일관된 표현으로 사용하기 위한 Reflection-like Interface.</p>
+ * <p>여러 형태로 구현될 수 있는 {@link org.smoodi.web.handler.annotation.Handler Handler}를 일관된 표현으로 사용하기 위한 표준 인터페이스.</p>
  *
  * @author Daybreak312
  * @since v0.0.1
@@ -23,7 +23,7 @@ public interface Handler {
     /**
      * <p>주어진 요청을 처리.</p>
      *
-     * @param request 요청 객체.
+     * @param request  요청 객체.
      * @param response 요청 처리 결과를 담을 응답 객체.
      */
     void handle(@NotNull Request request, @NotNull Response response);
