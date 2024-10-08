@@ -31,6 +31,7 @@ public class MapHttpHeaders
 
     @EmptyableArray
     @NotNull
+    @Overload
     @StaticFactoryMethod
     public static MapHttpHeaders of(@NotNull final Map<String, String> headers) {
         return new MapHttpHeaders(headers);
@@ -38,6 +39,7 @@ public class MapHttpHeaders
 
     @EmptyableArray
     @NotNull
+    @Overload
     @StaticFactoryMethod
     public static MapHttpHeaders of(@NotNull final Headers headers) {
         return new MapHttpHeaders(headers);

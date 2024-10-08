@@ -38,6 +38,7 @@ public class MapHeaders implements Headers {
 
     @EmptyableArray
     @NotNull
+    @Overload
     @StaticFactoryMethod
     public static MapHeaders of(@NotNull final Map<String, String> headers) {
         return new MapHeaders(headers);
@@ -45,6 +46,7 @@ public class MapHeaders implements Headers {
 
     @EmptyableArray
     @NotNull
+    @Overload
     @StaticFactoryMethod
     public static MapHeaders of(@NotNull final Headers headers) {
         return new MapHeaders(headers);

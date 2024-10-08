@@ -2,6 +2,8 @@ package org.smoodi.net.exchange;
 
 import lombok.NoArgsConstructor;
 import org.smoodi.annotation.NotNull;
+import org.smoodi.annotation.Overload;
+import org.smoodi.annotation.StaticFactoryMethod;
 import org.smoodi.annotation.array.EmptyArray;
 import org.smoodi.annotation.array.EmptyableArray;
 
@@ -28,12 +30,16 @@ public class UnmodifiableMapHttpHeaders extends MapHttpHeaders {
 
     @EmptyableArray
     @NotNull
+    @Overload
+    @StaticFactoryMethod
     public static UnmodifiableMapHttpHeaders of(@NotNull final Map<String, String> headers) {
         return new UnmodifiableMapHttpHeaders(headers);
     }
 
     @EmptyableArray
     @NotNull
+    @Overload
+    @StaticFactoryMethod
     public static UnmodifiableMapHttpHeaders of(@NotNull final Headers headers) {
         return new UnmodifiableMapHttpHeaders(headers);
     }
