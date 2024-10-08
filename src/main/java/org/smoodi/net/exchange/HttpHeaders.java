@@ -2,6 +2,7 @@ package org.smoodi.net.exchange;
 
 import org.smoodi.annotation.NotNull;
 import org.smoodi.annotation.Nullable;
+import org.smoodi.annotation.Overload;
 
 /**
  * <p>Wrapper of HTTP headers saved as Key-Value {@link java.util.Collection Collection}.</p>
@@ -16,6 +17,7 @@ import org.smoodi.annotation.Nullable;
 public interface HttpHeaders extends Headers {
 
     @Nullable
+    @Overload
     String get(@NotNull final HttpHeaderNames key);
 
     @Nullable

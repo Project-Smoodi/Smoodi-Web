@@ -3,9 +3,10 @@ package org.smoodi.net.exchange;
 import lombok.NoArgsConstructor;
 import org.smoodi.annotation.NotNull;
 import org.smoodi.annotation.Nullable;
+import org.smoodi.annotation.Overload;
 import org.smoodi.annotation.StaticFactoryMethod;
+import org.smoodi.annotation.array.EmptyArray;
 import org.smoodi.annotation.array.EmptyableArray;
-import org.smoodi.annotation.array.NotEmptyArray;
 import org.smoodi.annotation.array.UnmodifiableArray;
 
 import java.util.HashMap;
@@ -21,32 +22,52 @@ import java.util.Objects;
 @NoArgsConstructor
 public class MapHeaders implements Headers {
 
-    private final Map<String, String> headers = new HashMap<>();
+    protected final Map<String, String> headers = new HashMap<>();
 
-    public MapHeaders(
-            @NotNull @NotEmptyArray final Map<String, String> headers
-    ) {
+    public MapHeaders(@NotNull final Map<String, String> headers) {
+        Objects.requireNonNull(headers);
+
         this.headers.putAll(headers);
     }
 
+    public MapHeaders(@NotNull final Headers headers) {
+        Objects.requireNonNull(headers);
+
+        this.headers.putAll(headers.toMap());
+    }
+
+    @EmptyableArray
+    @NotNull
     @StaticFactoryMethod
     public static MapHeaders of(@NotNull final Map<String, String> headers) {
-        Objects.requireNonNull(headers);
         return new MapHeaders(headers);
     }
 
+    @EmptyableArray
+    @NotNull
+    @StaticFactoryMethod
+    public static MapHeaders of(@NotNull final Headers headers) {
+        return new MapHeaders(headers);
+    }
+
+    @EmptyArray
+    @NotNull
     @StaticFactoryMethod
     public static MapHeaders empty() {
         return new MapHeaders();
     }
 
     @Nullable
+    @Overload
     @Override
     public String get(@NotNull final String key) {
+        Objects.requireNonNull(key);
+
         return headers.get(key);
     }
 
     @NotNull
+    @Overload
     @Override
     public String get(@NotNull final String key, @NotNull final String defaultValue) {
         Objects.requireNonNull(key);

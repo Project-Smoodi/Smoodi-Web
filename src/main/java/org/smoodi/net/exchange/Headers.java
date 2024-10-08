@@ -2,6 +2,7 @@ package org.smoodi.net.exchange;
 
 import org.smoodi.annotation.NotNull;
 import org.smoodi.annotation.Nullable;
+import org.smoodi.annotation.Overload;
 import org.smoodi.annotation.array.EmptyableArray;
 import org.smoodi.annotation.array.UnmodifiableArray;
 
@@ -18,9 +19,11 @@ import java.util.Map;
 public interface Headers {
 
     @Nullable
+    @Overload
     String get(@NotNull final String key);
 
     @NotNull
+    @Overload
     String get(@NotNull final String key, @NotNull final String defaultValue);
 
     void set(@NotNull final String key, @Nullable final String value);
