@@ -1,6 +1,10 @@
 package org.smoodi.web.server;
 
+import org.smoodi.annotation.NotNull;
 import org.smoodi.web.router.Router;
+
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * <p>서버의 최전단에서 클라이언트 요청 및 {@link Router} 응답의 가공과 처리 가능한 {@link Router}를 연결하는 역할을 수행</p>
@@ -10,7 +14,6 @@ import org.smoodi.web.router.Router;
  */
 public interface Gateway {
 
-    void listen();
-
-    void stop();
+    @NotNull
+    OutputStream service(@NotNull InputStream inputStream, @NotNull OutputStream outputStream);
 }
