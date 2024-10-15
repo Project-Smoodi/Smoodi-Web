@@ -5,7 +5,7 @@ import org.smoodi.net.exchange.Response;
 
 public interface Router {
 
-    Response route(Request request);
-
     boolean supports(Request request);
+
+    Response route(Request request);
 }
