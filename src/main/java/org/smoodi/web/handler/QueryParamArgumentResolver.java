@@ -30,7 +30,7 @@ public class QueryParamArgumentResolver extends AnnotationBasedArgumentResolver 
 
         String key = Nullability.firstOrSecondIfBlank(
                 ((QueryParam) annotation).value(),
-                parameter.getName()
+                parameter::getName
         );
 
         String param = request.getParams().get(key);
