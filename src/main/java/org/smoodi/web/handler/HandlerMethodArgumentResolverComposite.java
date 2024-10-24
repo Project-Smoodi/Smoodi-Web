@@ -10,7 +10,7 @@ import java.lang.reflect.Parameter;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Module
+@Module(isPrimary = true)
 public final class HandlerMethodArgumentResolverComposite implements HandlerMethodArgumentResolver {
 
     @UnmodifiableArray
