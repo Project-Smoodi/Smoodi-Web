@@ -23,7 +23,7 @@ java {
 }
 
 dependencies {
-    api("org.smoodi.framework:smoodi-core:0.1.1-SNAPSHOT")
+    api("org.smoodi.framework:smoodi-core:0.1.3-SNAPSHOT")
 
     // Jackson
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.5")
@@ -38,7 +38,6 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.30")
 
     // Test
-
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
