@@ -1,4 +1,4 @@
-package org.smoodi.web.handler;
+package org.smoodi.web.handler.argument;
 
 import org.smoodi.physalus.transfer.http.HttpStatus;
 import org.smoodi.web.StatusException;
