@@ -1,10 +1,10 @@
 package org.smoodi.web.server;
 
 import org.smoodi.annotation.NotNull;
-import org.smoodi.net.exchange.HttpRequest;
-import org.smoodi.net.exchange.HttpResponse;
-import org.smoodi.net.exchange.Request;
-import org.smoodi.net.exchange.Response;
+import org.smoodi.physalus.transfer.Request;
+import org.smoodi.physalus.transfer.Response;
+import org.smoodi.physalus.transfer.http.HttpRequest;
+import org.smoodi.physalus.transfer.http.HttpResponse;
 
 public interface SimpleHttpGateway extends SimpleGateway {
 

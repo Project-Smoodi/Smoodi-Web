@@ -1,6 +1,6 @@
 package org.smoodi.web.handler;
 
-import org.smoodi.net.exchange.ContentType;
+import org.smoodi.physalus.transfer.http.ContentType;
 import org.smoodi.web.handler.annotation.RequestPath;
 
 import java.util.List;

@@ -2,7 +2,7 @@ package org.smoodi.web.handler;
 
 import lombok.RequiredArgsConstructor;
 import org.smoodi.annotation.NotNull;
-import org.smoodi.net.exchange.HttpRequest;
+import org.smoodi.physalus.transfer.http.HttpRequest;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Parameter;

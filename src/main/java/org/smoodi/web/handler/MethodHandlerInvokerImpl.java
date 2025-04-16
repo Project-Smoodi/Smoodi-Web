@@ -3,9 +3,9 @@ package org.smoodi.web.handler;
 import lombok.RequiredArgsConstructor;
 import org.smoodi.annotation.NotNull;
 import org.smoodi.core.annotation.Module;
-import org.smoodi.net.exchange.HttpRequest;
-import org.smoodi.net.exchange.Request;
-import org.smoodi.net.exchange.Response;
+import org.smoodi.physalus.transfer.Request;
+import org.smoodi.physalus.transfer.Response;
+import org.smoodi.physalus.transfer.http.HttpRequest;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;

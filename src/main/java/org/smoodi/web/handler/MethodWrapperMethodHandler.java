@@ -4,10 +4,10 @@ import lombok.Getter;
 import org.smoodi.annotation.NotNull;
 import org.smoodi.annotation.array.EmptyableArray;
 import org.smoodi.annotation.array.UnmodifiableArray;
-import org.smoodi.net.exchange.ContentType;
-import org.smoodi.net.exchange.HttpRequest;
-import org.smoodi.net.exchange.Request;
-import org.smoodi.net.exchange.Response;
+import org.smoodi.physalus.transfer.Request;
+import org.smoodi.physalus.transfer.Response;
+import org.smoodi.physalus.transfer.http.ContentType;
+import org.smoodi.physalus.transfer.http.HttpRequest;
 import org.smoodi.web.handler.annotation.RequestPath;
 
 import java.lang.reflect.Method;

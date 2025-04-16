@@ -1,8 +1,8 @@
 package org.smoodi.web.handler;
 
 import org.smoodi.annotation.NotNull;
-import org.smoodi.net.exchange.Request;
-import org.smoodi.net.exchange.Response;
+import org.smoodi.physalus.transfer.Request;
+import org.smoodi.physalus.transfer.Response;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -12,7 +12,7 @@ import java.util.List;
  * <p>{@link Method}를 통해 작성된 {@link org.smoodi.web.handler.annotation.Handler Handler}를 사용하기 위한 인터페이스.</p>
  *
  * @author Daybreak312
- * @see Method`
+ * @see Method
  * @see org.smoodi.web.handler.annotation.Handler
  * @see Handler
  * @see RequestPathHandler

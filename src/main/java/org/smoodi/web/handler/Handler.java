@@ -1,8 +1,8 @@
 package org.smoodi.web.handler;
 
 import org.smoodi.annotation.NotNull;
-import org.smoodi.net.exchange.Request;
-import org.smoodi.net.exchange.Response;
+import org.smoodi.physalus.transfer.Request;
+import org.smoodi.physalus.transfer.Response;
 
 /**
  * <p>여러 형태로 구현될 수 있는 {@link org.smoodi.web.handler.annotation.Handler Handler}를 일관된 표현으로 사용하기 위한 표준 인터페이스.</p>

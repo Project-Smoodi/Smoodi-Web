@@ -2,7 +2,7 @@ package org.smoodi.web.handler;
 
 import org.smoodi.annotation.NotNull;
 import org.smoodi.core.annotation.Module;
-import org.smoodi.net.exchange.HttpRequest;
+import org.smoodi.physalus.transfer.http.HttpRequest;
 import org.smoodi.web.handler.annotation.Header;
 
 import java.lang.annotation.Annotation;

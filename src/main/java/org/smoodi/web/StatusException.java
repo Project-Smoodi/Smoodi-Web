@@ -2,7 +2,7 @@ package org.smoodi.web;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.smoodi.net.exchange.HttpStatus;
+import org.smoodi.physalus.transfer.http.HttpStatus;
 
 @Getter
 @RequiredArgsConstructor

@@ -7,12 +7,13 @@ import org.smoodi.core.util.LazyInitUnmodifiableCollection;
 
 import java.io.*;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @Module(isPrimary = true)
 public class FrontGateway implements Gateway {
 
-    private final LazyInitUnmodifiableCollection<List<SimpleGateway>> gateways =
+    private final LazyInitUnmodifiableCollection<Set<SimpleGateway>> gateways =
             new LazyInitUnmodifiableCollection<>();
 
     private void init() {

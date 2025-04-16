@@ -1,7 +1,7 @@
 package org.smoodi.web.handler.annotation;
 
-import org.smoodi.net.exchange.ContentType;
-import org.smoodi.net.exchange.HttpMethod;
+import org.smoodi.physalus.transfer.http.ContentType;
+import org.smoodi.physalus.transfer.http.HttpMethod;
 
 import java.lang.annotation.*;
 

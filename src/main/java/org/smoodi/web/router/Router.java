@@ -1,7 +1,7 @@
 package org.smoodi.web.router;
 
-import org.smoodi.net.exchange.Request;
-import org.smoodi.net.exchange.Response;
+import org.smoodi.physalus.transfer.Request;
+import org.smoodi.physalus.transfer.Response;
 
 public interface Router {
 

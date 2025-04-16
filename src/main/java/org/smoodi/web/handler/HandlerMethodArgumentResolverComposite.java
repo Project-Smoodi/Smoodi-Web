@@ -4,7 +4,7 @@ import org.smoodi.annotation.NotNull;
 import org.smoodi.annotation.array.UnmodifiableArray;
 import org.smoodi.core.SmoodiFramework;
 import org.smoodi.core.annotation.Module;
-import org.smoodi.net.exchange.HttpRequest;
+import org.smoodi.physalus.transfer.http.HttpRequest;
 
 import java.lang.reflect.Parameter;
 import java.util.Set;

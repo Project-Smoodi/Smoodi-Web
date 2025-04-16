@@ -1,8 +1,8 @@
 package org.smoodi.web.handler;
 
 import org.smoodi.annotation.NotNull;
-import org.smoodi.net.exchange.Request;
-import org.smoodi.net.exchange.Response;
+import org.smoodi.physalus.transfer.Request;
+import org.smoodi.physalus.transfer.Response;
 
 /**
  * <p>{@link MethodHandler}를 실행.</p>

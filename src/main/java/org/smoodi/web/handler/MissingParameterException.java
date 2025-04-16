@@ -1,6 +1,6 @@
 package org.smoodi.web.handler;
 
-import org.smoodi.net.exchange.HttpStatus;
+import org.smoodi.physalus.transfer.http.HttpStatus;
 import org.smoodi.web.StatusException;
 
 /**
