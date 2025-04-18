@@ -1,0 +1,29 @@
+package org.smoodi.net.util;
+
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class PathUtils {
+
+    /**
+     * <p>Path String을 {@code /api/path/path} 의 형태와 같이 포맷</p>
+     *
+     * @param raw path string
+     * @return 포맷된 path string
+     */
+    public static String formatPath(String raw) {
+        if (raw == null || raw.trim().isEmpty()) {
+            return "/";
+        }
+
+        String cleaned = raw.trim()
+                .replaceAll("/+", "/")
+                .replaceAll("^/+", "")
+                .replaceAll("/+$", "");
+
+        String result = cleaned.isEmpty() ? "" : "/" + cleaned;
+
+        return "/" + result;
+    }
+}
