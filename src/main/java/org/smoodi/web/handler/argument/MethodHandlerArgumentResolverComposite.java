@@ -12,10 +12,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Module(isPrimary = true)
-public final class HandlerMethodArgumentResolverComposite implements HandlerMethodArgumentResolver {
+public final class MethodHandlerArgumentResolverComposite implements MethodHandlerArgumentResolver {
 
     @UnmodifiableArray
-    private Set<HandlerMethodArgumentResolver> resolvers;
+    private Set<MethodHandlerArgumentResolver> resolvers;
 
     private boolean initialized = false;
 
@@ -25,7 +25,7 @@ public final class HandlerMethodArgumentResolverComposite implements HandlerMeth
         }
 
         resolvers = SmoodiFramework.getInstance().getModuleContainer()
-                .getModulesByClass(HandlerMethodArgumentResolver.class)
+                .getModulesByClass(MethodHandlerArgumentResolver.class)
                 .stream().collect(Collectors.toUnmodifiableSet());
 
         initialized = true;
@@ -51,7 +51,7 @@ public final class HandlerMethodArgumentResolverComposite implements HandlerMeth
                 .filter(it -> it.supports(parameter));
 
         if (supports.count() != 1) {
-            throw new IllegalStateException("More than one " + HandlerMethodArgumentResolver.class.getSimpleName() + " was found about one type.");
+            throw new IllegalStateException("More than one " + MethodHandlerArgumentResolver.class.getSimpleName() + " was found about one type.");
         }
 
         return supports.findFirst().get().resolveArgument(request, parameter, handler);

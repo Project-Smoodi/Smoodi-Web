@@ -17,7 +17,7 @@ import java.lang.reflect.Parameter;
  * @see HandlerArgumentCaster
  * @since v0.0.1
  */
-public interface HandlerMethodArgumentResolver {
+public interface MethodHandlerArgumentResolver {
 
     /**
      * <p>이 객체가 주어진 매개변수에서 요구되는 값을 찾을 수 있는지 여부를 반환.</p>
@@ -31,7 +31,7 @@ public interface HandlerMethodArgumentResolver {
     /**
      * <p>값이 필요한 매개변수의 정보를 제공하고, 주입 가능한 값을 반환.</p>
      *
-     * <p>이 메소드 호출 이전에, {@link HandlerMethodArgumentResolver#supports} 메소드를 통해 매개변수를 처리할 수 있는지 확인할 것.</p>
+     * <p>이 메소드 호출 이전에, {@link MethodHandlerArgumentResolver#supports} 메소드를 통해 매개변수를 처리할 수 있는지 확인할 것.</p>
      *
      * @param request   현재 요청 정보
      * @param parameter 매개변수 정보

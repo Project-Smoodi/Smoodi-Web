@@ -16,7 +16,7 @@ import java.util.List;
 @Module
 public class MethodHandlerInvokerImpl implements MethodHandlerInvoker {
 
-    private final HandlerMethodArgumentResolver resolver;
+    private final MethodHandlerArgumentResolver resolver;
 
     @Override
     public void invoke(@NotNull MethodHandler handler, @NotNull Request request, @NotNull Response response) {

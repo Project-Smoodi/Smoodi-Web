@@ -10,15 +10,15 @@ import java.lang.reflect.Parameter;
 import java.util.Arrays;
 
 /**
- * <p>매개변수에 부착된 어노테이션을 기반으로 값을 주입하는 {@link HandlerMethodArgumentResolver}</p>
+ * <p>매개변수에 부착된 어노테이션을 기반으로 값을 주입하는 {@link MethodHandlerArgumentResolver}</p>
  *
  * @author Daybreak312
  * @see MethodHandler
- * @see HandlerMethodArgumentResolver
+ * @see MethodHandlerArgumentResolver
  * @since 0.0.1
  */
 @RequiredArgsConstructor
-public abstract class AnnotationBasedArgumentResolver implements HandlerMethodArgumentResolver {
+public abstract class AnnotationBasedArgumentResolver implements MethodHandlerArgumentResolver {
 
     protected final Class<? extends Annotation> targetAnnotation;
 

@@ -11,10 +11,10 @@ import org.smoodi.web.handler.MethodHandler;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * <p>{@link HandlerMethodArgumentResolver}의 캐스팅 동작을 추출한 유틸리티.</p>
+ * <p>{@link MethodHandlerArgumentResolver}의 캐스팅 동작을 추출한 유틸리티.</p>
  *
  * @author Daybreak312
- * @see HandlerMethodArgumentResolver
+ * @see MethodHandlerArgumentResolver
  * @see MethodHandler
  * @see org.smoodi.web.handler.annotation.Handler Handler(Annotation)
  * @see Handler
