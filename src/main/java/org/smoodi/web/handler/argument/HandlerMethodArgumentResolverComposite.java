@@ -5,6 +5,7 @@ import org.smoodi.annotation.array.UnmodifiableArray;
 import org.smoodi.core.SmoodiFramework;
 import org.smoodi.core.annotation.Module;
 import org.smoodi.physalus.transfer.http.HttpRequest;
+import org.smoodi.web.handler.MethodHandler;
 
 import java.lang.reflect.Parameter;
 import java.util.Set;
@@ -40,9 +41,9 @@ public final class HandlerMethodArgumentResolverComposite implements HandlerMeth
     @NotNull
     @Override
     public Object resolveArgument(
-            @NotNull HttpRequest request,
-            @NotNull Parameter parameter
-    ) {
+            @NotNull final HttpRequest request,
+            @NotNull final Parameter parameter,
+            @NotNull final MethodHandler handler) {
         init();
         assert this.supports(parameter);
 
@@ -53,6 +54,6 @@ public final class HandlerMethodArgumentResolverComposite implements HandlerMeth
             throw new IllegalStateException("More than one " + HandlerMethodArgumentResolver.class.getSimpleName() + " was found about one type.");
         }
 
-        return supports.findFirst().get().resolveArgument(request, parameter);
+        return supports.findFirst().get().resolveArgument(request, parameter, handler);
     }
 }

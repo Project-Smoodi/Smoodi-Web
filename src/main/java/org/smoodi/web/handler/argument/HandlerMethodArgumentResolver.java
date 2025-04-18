@@ -35,12 +35,13 @@ public interface HandlerMethodArgumentResolver {
      *
      * @param request   현재 요청 정보
      * @param parameter 매개변수 정보
+     * @param handler
      * @return 매개변수에 주입 가능한 값
      * @throws AssertionError 주어진 매개변수를 처리할 수 없을 경우
      */
     @NotNull
     Object resolveArgument(
             @NotNull final HttpRequest request,
-            @NotNull final Parameter parameter
-    );
+            @NotNull final Parameter parameter,
+            @NotNull final MethodHandler handler);
 }

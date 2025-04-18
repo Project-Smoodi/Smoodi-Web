@@ -35,8 +35,11 @@ public abstract class AnnotationBasedArgumentResolver implements HandlerMethodAr
     @Override
     public final Object resolveArgument(
             @NotNull final HttpRequest request,
-            @NotNull final Parameter parameter
-    ) {
+            @NotNull final Parameter parameter,
+            @NotNull final MethodHandler handler) {
+        assert request != null;
+        assert parameter != null;
+        assert handler != null;
         assert this.supports(parameter);
 
         final var annotation = Arrays.stream(parameter.getAnnotations())
@@ -44,14 +47,15 @@ public abstract class AnnotationBasedArgumentResolver implements HandlerMethodAr
 
         return annotation
                 .map(value ->
-                        resolveArgumentInternal(request, parameter, value))
+                        resolveArgumentInternal(request, parameter, value, handler))
                 .orElse(null);
+        // TODO("null 반환 코드가 있어도 되는 건지 다시 검증")
     }
 
     @NotNull
     protected abstract Object resolveArgumentInternal(
             @NotNull final HttpRequest request,
             @NotNull final Parameter methodParameter,
-            @NotNull final Annotation annotation
-    );
+            @NotNull final Annotation annotation,
+            @NotNull final MethodHandler handler);
 }
