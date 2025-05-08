@@ -26,7 +26,7 @@ public interface MethodHandlerArgumentResolver {
      * @return 주어진 매개변수를 처리할 수 있다면 {@code true}, 아닐 경우 {@code false}
      */
     @NotNull
-    boolean supports(@NotNull final Parameter parameter);
+    boolean supports(@NotNull Parameter parameter);
 
     /**
      * <p>값이 필요한 매개변수의 정보를 제공하고, 주입 가능한 값을 반환.</p>
@@ -41,7 +41,7 @@ public interface MethodHandlerArgumentResolver {
      */
     @NotNull
     Object resolveArgument(
-            @NotNull final HttpRequest request,
-            @NotNull final Parameter parameter,
-            @NotNull final MethodHandler handler);
+            @NotNull HttpRequest request,
+            @NotNull Parameter parameter,
+            @NotNull MethodHandler handler);
 }
