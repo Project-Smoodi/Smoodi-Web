@@ -1,9 +1,5 @@
 package org.smoodi.web.handler;
 
-import org.smoodi.annotation.NotNull;
-import org.smoodi.physalus.transfer.Request;
-import org.smoodi.physalus.transfer.Response;
-
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.List;
@@ -29,10 +25,4 @@ public interface MethodHandler extends Handler {
     int getParameterCount();
 
     String getName();
-
-    @Override
-    boolean supports(@NotNull Request request);
-
-    @Override
-    void handle(@NotNull Request request, @NotNull Response response);
 }
