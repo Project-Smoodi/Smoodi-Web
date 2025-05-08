@@ -7,5 +7,5 @@ public interface Router {
 
     boolean supports(Request request);
 
-    Response route(Request request);
+    void route(Request request, Response response);
 }

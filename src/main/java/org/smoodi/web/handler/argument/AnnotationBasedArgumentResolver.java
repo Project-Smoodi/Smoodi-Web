@@ -1,23 +1,24 @@
-package org.smoodi.web.handler;
+package org.smoodi.web.handler.argument;
 
 import lombok.RequiredArgsConstructor;
 import org.smoodi.annotation.NotNull;
 import org.smoodi.physalus.transfer.http.HttpRequest;
+import org.smoodi.web.handler.MethodHandler;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Parameter;
 import java.util.Arrays;
 
 /**
- * <p>매개변수에 부착된 어노테이션을 기반으로 값을 주입하는 {@link HandlerMethodArgumentResolver}</p>
+ * <p>매개변수에 부착된 어노테이션을 기반으로 값을 주입하는 {@link MethodHandlerArgumentResolver}</p>
  *
  * @author Daybreak312
  * @see MethodHandler
- * @see HandlerMethodArgumentResolver
+ * @see MethodHandlerArgumentResolver
  * @since 0.0.1
  */
 @RequiredArgsConstructor
-public abstract class AnnotationBasedArgumentResolver implements HandlerMethodArgumentResolver {
+public abstract class AnnotationBasedArgumentResolver implements MethodHandlerArgumentResolver {
 
     protected final Class<? extends Annotation> targetAnnotation;
 
@@ -34,8 +35,11 @@ public abstract class AnnotationBasedArgumentResolver implements HandlerMethodAr
     @Override
     public final Object resolveArgument(
             @NotNull final HttpRequest request,
-            @NotNull final Parameter parameter
-    ) {
+            @NotNull final Parameter parameter,
+            @NotNull final MethodHandler handler) {
+        assert request != null;
+        assert parameter != null;
+        assert handler != null;
         assert this.supports(parameter);
 
         final var annotation = Arrays.stream(parameter.getAnnotations())
@@ -43,14 +47,15 @@ public abstract class AnnotationBasedArgumentResolver implements HandlerMethodAr
 
         return annotation
                 .map(value ->
-                        resolveArgumentInternal(request, parameter, value))
+                        resolveArgumentInternal(request, parameter, value, handler))
                 .orElse(null);
+        // TODO("null 반환 코드가 있어도 되는 건지 다시 검증")
     }
 
     @NotNull
     protected abstract Object resolveArgumentInternal(
             @NotNull final HttpRequest request,
             @NotNull final Parameter methodParameter,
-            @NotNull final Annotation annotation
-    );
+            @NotNull final Annotation annotation,
+            @NotNull final MethodHandler handler);
 }

@@ -1,8 +1,9 @@
-package org.smoodi.web.handler;
+package org.smoodi.web.handler.argument;
 
 import org.smoodi.annotation.NotNull;
 import org.smoodi.core.annotation.Module;
 import org.smoodi.physalus.transfer.http.HttpRequest;
+import org.smoodi.web.handler.MethodHandler;
 import org.smoodi.web.handler.annotation.Header;
 
 import java.lang.annotation.Annotation;
@@ -20,8 +21,8 @@ public final class HeaderArgumentResolver extends AnnotationBasedArgumentResolve
     protected Object resolveArgumentInternal(
             @NotNull final HttpRequest request,
             @NotNull final Parameter parameter,
-            @NotNull final Annotation annotation
-    ) {
+            @NotNull final Annotation annotation,
+            MethodHandler handler) {
         assert request != null;
         assert parameter != null;
         assert annotation != null;
