@@ -15,7 +15,7 @@ import java.util.List;
  * @see MethodHandler
  * @since v0.0.1
  */
-public interface RequestPathHandler extends Handler {
+public interface RequestPathHandler extends HttpHandler {
 
     RequestPath getRequestPath();
 

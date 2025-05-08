@@ -4,10 +4,9 @@ import lombok.Getter;
 import org.smoodi.annotation.NotNull;
 import org.smoodi.annotation.array.EmptyableArray;
 import org.smoodi.annotation.array.UnmodifiableArray;
-import org.smoodi.physalus.transfer.Request;
-import org.smoodi.physalus.transfer.Response;
 import org.smoodi.physalus.transfer.http.ContentType;
 import org.smoodi.physalus.transfer.http.HttpRequest;
+import org.smoodi.physalus.transfer.http.HttpResponse;
 import org.smoodi.web.handler.annotation.RequestPath;
 import org.smoodi.web.handler.argument.MethodHandlerInvoker;
 
@@ -92,34 +91,31 @@ public class MethodWrapperMethodHandler implements RequestPathMethodHandler {
     }
 
     @Override
-    public boolean supports(@NotNull final Request request) {
-        if (!(request instanceof HttpRequest)) {
+    public boolean supports(@NotNull final HttpRequest request) {
+
+        if (!request.getPath().equals(this.requestPath.path())) {
             return false;
         }
 
-        if (!((HttpRequest) request).getPath().equals(this.requestPath.path())) {
-            return false;
-        }
-
-        if (!(((HttpRequest) request).getParams().keySet()
+        if (!(request.getParams().keySet()
                 .containsAll(
-                        Arrays.stream(this.requestPath.params()).toList()
+                        List.of(this.requestPath.params())
                 ))) {
             return false;
         }
 
-        if (!(((HttpRequest) request).getHeaders().toMap().keySet()
+        if (!(request.getHeaders().toMap().keySet()
                 .containsAll(
-                        Arrays.stream(this.requestPath.headers()).toList()
+                        List.of(this.requestPath.headers())
                 ))) {
             return false;
         }
 
-        return ((HttpRequest) request).getMethod().equals(this.requestPath.method());
+        return request.getMethod().equals(this.requestPath.method());
     }
 
     @Override
-    public void handle(@NotNull Request request, @NotNull Response response) {
+    public void handle(@NotNull HttpRequest request, @NotNull HttpResponse response) {
         invoker.invoke(this, Objects.requireNonNull(request), Objects.requireNonNull(response));
     }
 }
