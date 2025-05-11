@@ -10,7 +10,7 @@ import org.smoodi.physalus.engine.Engine;
 @Module
 public final class SmoodiWeb {
 
-    private final Engine engine;
+    private final PhysalusDelegate engine;
 
     public void startServer() {
         engine.startEngine();

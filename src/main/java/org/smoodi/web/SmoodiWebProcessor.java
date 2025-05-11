@@ -21,13 +21,13 @@ public class SmoodiWebProcessor implements Processor {
         smoodiWeb.startServer();
     }
 
-    @Override
-    public void stop() {
-    }
-
     private void registerAdapter() {
         physalusDelegate.getPhysalus()
                 .getAdapterManager()
                 .addAdapter(adapter);
+    }
+
+    @Override
+    public void stop() {
     }
 }
