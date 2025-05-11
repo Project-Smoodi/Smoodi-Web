@@ -1,13 +1,13 @@
 package org.smoodi.web;
 
 import lombok.RequiredArgsConstructor;
-import org.smoodi.core.SubprojectBootStrap;
+import org.smoodi.core.Processor;
 import org.smoodi.core.annotation.Module;
 import org.smoodi.web.server.GatewayAdapter;
 
 @RequiredArgsConstructor
 @Module
-public class SmoodiWebBootStrap implements SubprojectBootStrap {
+public class SmoodiWebProcessor implements Processor {
 
     private final PhysalusDelegate physalusDelegate;
 
@@ -19,6 +19,10 @@ public class SmoodiWebBootStrap implements SubprojectBootStrap {
     public void start() {
         registerAdapter();
         smoodiWeb.startServer();
+    }
+
+    @Override
+    public void stop() {
     }
 
     private void registerAdapter() {

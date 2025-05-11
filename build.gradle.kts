@@ -23,16 +23,16 @@ java {
 }
 
 dependencies {
-    api("org.smoodi.framework:smoodi-core:0.1.3-SNAPSHOT")
+    api("org.smoodi.framework:smoodi-core:0.1.5-SNAPSHOT")
     api("org.smoodi.framework:physalus:0-TEMP")
 
     // Jackson
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.5")
 
     // Logger
-    api("org.slf4j:slf4j-api:2.0.9")
-    implementation("ch.qos.logback:logback-core:1.4.14")
-    implementation("ch.qos.logback:logback-classic:1.4.14")
+    api("org.slf4j:slf4j-api:2.0.13")
+    implementation("ch.qos.logback:logback-core:1.5.13")
+    implementation("ch.qos.logback:logback-classic:1.5.13")
 
     // Lombok
     compileOnly("org.projectlombok:lombok:1.18.30")
@@ -56,6 +56,11 @@ tasks.withType<JavaCompile> {
             "--add-exports", "jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED"
         )
     )
+}
+
+tasks.register<Jar>("sourcesJar") {
+    archiveClassifier.set("sources")
+    from(sourceSets["main"].allSource)
 }
 
 publishing {
