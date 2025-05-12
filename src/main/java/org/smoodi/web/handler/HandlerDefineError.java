@@ -1,4 +1,6 @@
-package org.smoodi.web.handler.argument;
+package org.smoodi.web.handler;
+
+import org.smoodi.web.handler.argument.PathParamArgumentResolver;
 
 /**
  * <p>{@link org.smoodi.web.handler.annotation.Handler}가 잘못 정의되었을 때 발생하는 에러.</p>
