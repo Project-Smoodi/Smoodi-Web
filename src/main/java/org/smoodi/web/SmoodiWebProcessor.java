@@ -6,7 +6,7 @@ import org.smoodi.core.annotation.Module;
 import org.smoodi.web.server.GatewayAdapter;
 
 @RequiredArgsConstructor
-@Module
+@Module(order = Byte.MAX_VALUE)
 public class SmoodiWebProcessor implements Processor {
 
     private final PhysalusDelegate physalusDelegate;
@@ -19,6 +19,8 @@ public class SmoodiWebProcessor implements Processor {
     public void start() {
         registerAdapter();
         smoodiWeb.startServer();
+
+        physalusDelegate.getPhysalus().getServerRuntime().listening();
     }
 
     private void registerAdapter() {

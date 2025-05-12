@@ -24,7 +24,7 @@ java {
 
 dependencies {
     api("org.smoodi.framework:smoodi-core:0.1.5-SNAPSHOT")
-    api("org.smoodi.framework:physalus:0-TEMP")
+    api("org.smoodi.framework:physalus:0.0.1-SNAPSHOT")
 
     // Jackson
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.5")
