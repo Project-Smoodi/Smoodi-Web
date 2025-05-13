@@ -8,7 +8,6 @@ import org.smoodi.physalus.transfer.http.ContentType;
 import org.smoodi.physalus.transfer.http.HttpHeaderNames;
 import org.smoodi.physalus.transfer.http.HttpResponse;
 import org.smoodi.web.handler.MethodHandler;
-import org.smoodi.web.handler.MethodHandlerReturnValueResolver;
 
 @Slf4j
 @Module(order = Byte.MAX_VALUE)

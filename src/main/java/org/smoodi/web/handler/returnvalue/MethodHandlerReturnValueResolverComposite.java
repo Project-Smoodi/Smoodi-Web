@@ -5,7 +5,6 @@ import org.smoodi.core.SmoodiFramework;
 import org.smoodi.core.annotation.Module;
 import org.smoodi.physalus.transfer.http.HttpResponse;
 import org.smoodi.web.handler.MethodHandler;
-import org.smoodi.web.handler.MethodHandlerReturnValueResolver;
 
 import java.util.Set;
 import java.util.stream.Collectors;

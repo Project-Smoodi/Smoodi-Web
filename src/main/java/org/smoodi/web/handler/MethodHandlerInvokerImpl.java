@@ -3,11 +3,10 @@ package org.smoodi.web.handler;
 import lombok.RequiredArgsConstructor;
 import org.smoodi.annotation.NotNull;
 import org.smoodi.core.annotation.Module;
-import org.smoodi.physalus.transfer.Request;
-import org.smoodi.physalus.transfer.Response;
 import org.smoodi.physalus.transfer.http.HttpRequest;
 import org.smoodi.physalus.transfer.http.HttpResponse;
 import org.smoodi.web.handler.argument.MethodHandlerArgumentResolver;
+import org.smoodi.web.handler.returnvalue.MethodHandlerReturnValueResolver;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -22,12 +21,12 @@ public class MethodHandlerInvokerImpl implements MethodHandlerInvoker {
     private final MethodHandlerReturnValueResolver returnValueResolver;
 
     @Override
-    public void invoke(@NotNull MethodHandler handler, @NotNull Request request, @NotNull Response response) {
+    public void invoke(@NotNull MethodHandler handler, @NotNull HttpRequest request, @NotNull HttpResponse response) {
         final List<Object> extracted = new ArrayList<>(handler.getParameterCount());
 
         handler.getParameters().forEach(parameter ->
                 extracted.add(
-                        argumentResolver.resolveArgument((HttpRequest) request, parameter, handler)
+                        argumentResolver.resolveArgument(request, parameter, handler)
                 ));
         Object returnValue;
 
@@ -37,6 +36,6 @@ public class MethodHandlerInvokerImpl implements MethodHandlerInvoker {
             throw new RuntimeException(e);
         }
 
-        returnValueResolver.resolveReturnValue((HttpResponse) response, returnValue, handler);
+        returnValueResolver.resolveReturnValue(response, returnValue, handler);
     }
 }

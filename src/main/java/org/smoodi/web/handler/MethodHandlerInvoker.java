@@ -1,8 +1,8 @@
 package org.smoodi.web.handler;
 
 import org.smoodi.annotation.NotNull;
-import org.smoodi.physalus.transfer.Request;
-import org.smoodi.physalus.transfer.Response;
+import org.smoodi.physalus.transfer.http.HttpRequest;
+import org.smoodi.physalus.transfer.http.HttpResponse;
 
 /**
  * <p>{@link MethodHandler}를 실행.</p>
@@ -14,5 +14,9 @@ import org.smoodi.physalus.transfer.Response;
  */
 public interface MethodHandlerInvoker {
 
-    void invoke(@NotNull MethodHandler handler, @NotNull Request request, @NotNull Response response);
+    void invoke(
+            @NotNull MethodHandler handler,
+            @NotNull HttpRequest request,
+            @NotNull HttpResponse response
+    );
 }
