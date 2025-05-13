@@ -4,6 +4,7 @@ import org.smoodi.annotation.NotNull;
 import org.smoodi.core.annotation.Module;
 import org.smoodi.net.util.PathUtils;
 import org.smoodi.physalus.transfer.http.HttpRequest;
+import org.smoodi.web.handler.HandlerDefineError;
 import org.smoodi.web.handler.MethodHandler;
 import org.smoodi.web.handler.RequestPathMethodHandler;
 import org.smoodi.web.handler.annotation.PathParam;

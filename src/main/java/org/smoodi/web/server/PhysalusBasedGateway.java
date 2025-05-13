@@ -15,7 +15,11 @@ public class PhysalusBasedGateway implements HttpGateway {
     @Override
     public HttpResponse service(HttpRequest request, HttpResponse response) {
         if (router.supports(request)) {
-            router.route(request, response);
+            try {
+                router.route(request, response);
+            } catch (Exception e) {
+
+            }
         }
 
         return response;
