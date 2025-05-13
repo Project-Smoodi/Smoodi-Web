@@ -10,6 +10,6 @@ public interface MethodHandlerReturnValueResolver {
     void resolveReturnValue(
             @NotNull HttpResponse response,
             @NotNull Object returnValue,
-            @NotNull RequestPathMethodHandler handler
+            @NotNull MethodHandler handler
     );
 }

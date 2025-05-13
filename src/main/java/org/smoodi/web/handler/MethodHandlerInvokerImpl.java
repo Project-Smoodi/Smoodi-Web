@@ -6,6 +6,7 @@ import org.smoodi.core.annotation.Module;
 import org.smoodi.physalus.transfer.Request;
 import org.smoodi.physalus.transfer.Response;
 import org.smoodi.physalus.transfer.http.HttpRequest;
+import org.smoodi.physalus.transfer.http.HttpResponse;
 import org.smoodi.web.handler.argument.MethodHandlerArgumentResolver;
 
 import java.lang.reflect.InvocationTargetException;
@@ -16,7 +17,9 @@ import java.util.List;
 @Module
 public class MethodHandlerInvokerImpl implements MethodHandlerInvoker {
 
-    private final MethodHandlerArgumentResolver resolver;
+    private final MethodHandlerArgumentResolver argumentResolver;
+
+    private final MethodHandlerReturnValueResolver returnValueResolver;
 
     @Override
     public void invoke(@NotNull MethodHandler handler, @NotNull Request request, @NotNull Response response) {
@@ -24,13 +27,16 @@ public class MethodHandlerInvokerImpl implements MethodHandlerInvoker {
 
         handler.getParameters().forEach(parameter ->
                 extracted.add(
-                        resolver.resolveArgument((HttpRequest) request, parameter, handler)
+                        argumentResolver.resolveArgument((HttpRequest) request, parameter, handler)
                 ));
+        Object returnValue;
 
         try {
-            handler.getMethod().invoke(handler.getDeclaredObject(), extracted.toArray());
+            returnValue = handler.getMethod().invoke(handler.getDeclaredObject(), extracted.toArray());
         } catch (IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
+
+        returnValueResolver.resolveReturnValue((HttpResponse) response, returnValue, handler);
     }
 }
