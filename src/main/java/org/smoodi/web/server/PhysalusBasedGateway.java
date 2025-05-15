@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.smoodi.core.annotation.Module;
 import org.smoodi.physalus.transfer.http.HttpRequest;
 import org.smoodi.physalus.transfer.http.HttpResponse;
-import org.smoodi.physalus.transfer.http.HttpStatus;
 import org.smoodi.web.router.Router;
 
 @Slf4j
@@ -15,20 +14,24 @@ public class PhysalusBasedGateway implements HttpGateway {
 
     private final Router router;
 
+    private final ErrorResolverChain errorResolver;
+
     @Override
     public HttpResponse service(HttpRequest request, HttpResponse response) {
-        if (router.supports(request)) {
-            try {
-                router.route(request, response);
-            } catch (Exception e) {
-                // TODO("Error Handling")
-                log.error(e.getMessage(), e);
-                response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        } else {
-            response.setStatusCode(HttpStatus.NOT_FOUND);
+        try {
+            routing(request, response);
+        } catch (Exception e) {
+            errorResolver.resolve(e, request, response);
         }
 
         return response;
+    }
+
+    public void routing(HttpRequest request, HttpResponse response) {
+        if (router.supports(request)) {
+            router.route(request, response);
+        } else {
+            throw new HandlerNotFoundException(String.format("Handler not found for request: %s", request.getPath()));
+        }
     }
 }
