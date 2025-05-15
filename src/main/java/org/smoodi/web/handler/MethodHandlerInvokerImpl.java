@@ -36,6 +36,8 @@ public class MethodHandlerInvokerImpl implements MethodHandlerInvoker {
             throw new RuntimeException(e);
         }
 
-        returnValueResolver.resolveReturnValue(response, returnValue, handler);
+        if (returnValueResolver.supports(returnValue)) {
+            returnValueResolver.resolveReturnValue(response, returnValue, handler);
+        }
     }
 }

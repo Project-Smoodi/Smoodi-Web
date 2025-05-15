@@ -4,6 +4,8 @@ import lombok.Getter;
 import org.smoodi.annotation.NotNull;
 import org.smoodi.annotation.array.EmptyableArray;
 import org.smoodi.annotation.array.UnmodifiableArray;
+import org.smoodi.core.annotation.StaticModule;
+import org.smoodi.net.util.PathUtils;
 import org.smoodi.physalus.transfer.http.ContentType;
 import org.smoodi.physalus.transfer.http.HttpRequest;
 import org.smoodi.physalus.transfer.http.HttpResponse;
@@ -15,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+@StaticModule
 public class MethodWrapperMethodHandler implements RequestPathMethodHandler {
 
     @Getter
@@ -92,7 +95,7 @@ public class MethodWrapperMethodHandler implements RequestPathMethodHandler {
     @Override
     public boolean supports(@NotNull final HttpRequest request) {
 
-        if (!request.getPath().equals(this.requestPath.path())) {
+        if (!PathUtils.matches(request.getPath(), this.requestPath.path())) {
             return false;
         }
 
