@@ -36,6 +36,6 @@ public class ErrorResolverChainImpl implements ErrorResolverChain {
             }
         }
 
-        response.json(ErrorResponse.of(new StatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error")));
+        response.json(ErrorResponse.of(StatusException.of(HttpStatus.INTERNAL_SERVER_ERROR)));
     }
 }
