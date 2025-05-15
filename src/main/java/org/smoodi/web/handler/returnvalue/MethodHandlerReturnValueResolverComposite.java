@@ -23,13 +23,15 @@ public class MethodHandlerReturnValueResolverComposite implements MethodHandlerR
 
         resolvers = SmoodiFramework.getInstance().getModuleContainer()
                 .getModulesByClass(MethodHandlerReturnValueResolver.class)
-                .stream().collect(Collectors.toUnmodifiableSet());
+                .stream().filter(it -> it != this)
+                .collect(Collectors.toSet());
 
         initialized = true;
     }
 
     @Override
     public boolean supports(Object returnValue) {
+        init();
         return resolvers.stream().anyMatch(resolver -> resolver.supports(returnValue));
     }
 
@@ -38,14 +40,14 @@ public class MethodHandlerReturnValueResolverComposite implements MethodHandlerR
         init();
         assert this.supports(returnValue);
 
-        final var supports = resolvers.stream()
-                .filter(it -> it.supports(returnValue))
-                .findFirst();
-
-        if (supports.isEmpty()) {
-            throw new IllegalStateException("Something wrong, supports method returned true but found is nothing.");
+        for (MethodHandlerReturnValueResolver resolver : resolvers) {
+            if (resolver.supports(returnValue)) {
+                resolver.resolveReturnValue(response, returnValue, handler);
+                return;
+            }
         }
 
-        supports.get().resolveReturnValue(response, returnValue, handler);
+        // This should never happen
+        throw new Error();
     }
 }

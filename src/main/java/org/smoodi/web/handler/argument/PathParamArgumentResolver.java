@@ -42,7 +42,7 @@ public class PathParamArgumentResolver extends AnnotationBasedArgumentResolver {
             throw new HandlerDefineError("Invalid path param: " + ((PathParam) annotation).value() + " for request path: " + handler1.getRequestPath().path());
         }
 
-        final var path = Arrays.stream(PathUtils.formatPath(((PathParam) annotation).value()).split("/")).toList();
+        final var path = Arrays.stream(PathUtils.formatPath((handler1.getPath())).split("/")).toList();
         final var reqPath = Arrays.stream(PathUtils.formatPath(request.getPath()).split("/")).toList();
 
         return reqPath.get(path.indexOf(pathParamRegex));

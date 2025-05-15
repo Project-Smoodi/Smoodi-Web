@@ -1,17 +1,16 @@
 package org.smoodi.web.handler;
 
+import ch.qos.logback.core.encoder.ByteArrayUtil;
 import org.smoodi.core.SmoodiFramework;
 import org.smoodi.core.annotation.Module;
 import org.smoodi.core.module.ModuleDeclareError;
 import org.smoodi.core.util.LazyInitUnmodifiableCollection;
 import org.smoodi.physalus.transfer.Request;
 
-import java.util.Set;
-
 @Module
 public final class DefaultHandlerContainer implements HandlerContainer {
 
-    LazyInitUnmodifiableCollection<Set<Handler>> handlers = new LazyInitUnmodifiableCollection<>();
+    LazyInitUnmodifiableCollection<Handler> handlers = new LazyInitUnmodifiableCollection<>();
 
     private void init() {
         if (handlers.isInitialized()) {

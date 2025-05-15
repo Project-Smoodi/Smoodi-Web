@@ -4,18 +4,17 @@ import org.smoodi.annotation.NotNull;
 import org.smoodi.annotation.array.UnmodifiableArray;
 import org.smoodi.core.SmoodiFramework;
 import org.smoodi.core.annotation.Module;
+import org.smoodi.core.util.LazyInitUnmodifiableCollection;
 import org.smoodi.physalus.transfer.http.HttpRequest;
 import org.smoodi.web.handler.MethodHandler;
 
 import java.lang.reflect.Parameter;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Module(isPrimary = true)
 public final class MethodHandlerArgumentResolverComposite implements MethodHandlerArgumentResolver {
 
     @UnmodifiableArray
-    private Set<MethodHandlerArgumentResolver> resolvers;
+    private final LazyInitUnmodifiableCollection<MethodHandlerArgumentResolver> resolvers = new LazyInitUnmodifiableCollection<>();
 
     private boolean initialized = false;
 
@@ -24,9 +23,12 @@ public final class MethodHandlerArgumentResolverComposite implements MethodHandl
             return;
         }
 
-        resolvers = SmoodiFramework.getInstance().getModuleContainer()
-                .getModulesByClass(MethodHandlerArgumentResolver.class)
-                .stream().collect(Collectors.toUnmodifiableSet());
+        resolvers.initWith(
+                SmoodiFramework.getInstance().getModuleContainer()
+                        .getModulesByClass(MethodHandlerArgumentResolver.class).stream()
+                        .filter(it -> !this.equals(it))
+                        .toList()
+        );
 
         initialized = true;
     }
@@ -34,7 +36,7 @@ public final class MethodHandlerArgumentResolverComposite implements MethodHandl
     @NotNull
     @Override
     public boolean supports(Parameter parameter) {
-        return resolvers.stream()
+        return resolvers.get().stream()
                 .anyMatch(resolver -> resolver.supports(parameter));
     }
 
@@ -47,13 +49,13 @@ public final class MethodHandlerArgumentResolverComposite implements MethodHandl
         init();
         assert this.supports(parameter);
 
-        final var supports = resolvers.stream()
-                .filter(it -> it.supports(parameter));
-
-        if (supports.count() != 1) {
-            throw new IllegalStateException("More than one " + MethodHandlerArgumentResolver.class.getSimpleName() + " was found about one type.");
+        for (final var resolver : resolvers.get()) {
+            if (resolver.supports(parameter)) {
+                return resolver.resolveArgument(request, parameter, handler);
+            }
         }
 
-        return supports.findFirst().get().resolveArgument(request, parameter, handler);
+        // This should never happen
+        throw new Error();
     }
 }

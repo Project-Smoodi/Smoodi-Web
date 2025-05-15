@@ -8,7 +8,7 @@ import org.smoodi.web.handler.argument.UnsupportedTypeParameterException;
 
 public class HandlerArgumentCasterTests {
 
-    private enum Enum {
+    public enum Enum {
         ONE,
         TWO,
         THREE
