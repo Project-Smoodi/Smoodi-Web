@@ -26,8 +26,10 @@ dependencies {
     api("org.smoodi.framework:smoodi-core:0.1.5-SNAPSHOT")
     api("org.smoodi.framework:physalus:0.0.3-SNAPSHOT")
 
-    // Jackson
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.5")
+    // Serialization
+    api("com.fasterxml.jackson.core:jackson-databind:2.13.5")
+    api("jakarta.xml.bind:jakarta.xml.bind-api:4.0.0")
+    api("org.glassfish.jaxb:jaxb-runtime:4.0.0")
 
     // Logger
     api("org.slf4j:slf4j-api:2.0.13")
