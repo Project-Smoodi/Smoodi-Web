@@ -1,5 +1,6 @@
 package org.smoodi.web.server;
 
+import lombok.extern.slf4j.Slf4j;
 import org.smoodi.core.SmoodiFramework;
 import org.smoodi.core.annotation.Module;
 import org.smoodi.core.util.LazyInitUnmodifiableCollection;
@@ -8,6 +9,7 @@ import org.smoodi.physalus.transfer.http.HttpResponse;
 import org.smoodi.physalus.transfer.http.HttpStatus;
 import org.smoodi.web.StatusException;
 
+@Slf4j
 @Module
 public class ErrorResolverChainImpl implements ErrorResolverChain {
 
@@ -36,6 +38,8 @@ public class ErrorResolverChainImpl implements ErrorResolverChain {
             }
         }
 
+        log.error("Unhandled exception: {}", throwable.getMessage(), throwable);
+        response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
         response.json(ErrorResponse.of(StatusException.of(HttpStatus.INTERNAL_SERVER_ERROR)));
     }
 }

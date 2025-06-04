@@ -24,6 +24,8 @@ public class PhysalusBasedGateway implements HttpGateway {
             errorResolver.resolve(e, request, response);
         }
 
+        loggingResponse(request, response);
+
         return response;
     }
 
@@ -33,5 +35,14 @@ public class PhysalusBasedGateway implements HttpGateway {
         } else {
             throw new HandlerNotFoundException(String.format("Handler not found for request: %s", request.getPath()));
         }
+    }
+
+    public void loggingResponse(HttpRequest request, HttpResponse response) {
+        log.info("{} {} :: [{} {}]",
+                request.getMethod().value,
+                request.getPath(),
+                response.getStatusCode().status,
+                response.getStatusCode().reason
+        );
     }
 }
