@@ -5,6 +5,8 @@ import org.smoodi.annotation.NotNull;
 import org.smoodi.core.annotation.Module;
 import org.smoodi.physalus.transfer.http.HttpRequest;
 import org.smoodi.physalus.transfer.http.HttpResponse;
+import org.smoodi.physalus.transfer.http.HttpStatus;
+import org.smoodi.web.StatusException;
 import org.smoodi.web.handler.argument.MethodHandlerArgumentResolver;
 import org.smoodi.web.handler.returnvalue.MethodHandlerReturnValueResolver;
 
@@ -32,8 +34,10 @@ public class MethodHandlerInvokerImpl implements MethodHandlerInvoker {
 
         try {
             returnValue = handler.getMethod().invoke(handler.getDeclaredObject(), extracted.toArray());
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new StatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Method access error: " + e.getMessage(), e);
+        } catch (InvocationTargetException e) {
+            throw new HandlerExceptionWrapper(e.getCause());
         }
 
         if (returnValueResolver.supports(returnValue)) {

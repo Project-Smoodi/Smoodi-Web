@@ -5,6 +5,7 @@ import org.smoodi.physalus.transfer.http.HttpRequest;
 import org.smoodi.physalus.transfer.http.HttpResponse;
 import org.smoodi.physalus.transfer.http.HttpStatus;
 import org.smoodi.web.StatusException;
+import org.smoodi.web.handler.HandlerExceptionWrapper;
 
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 public class JavaExceptionResolver implements ErrorResolver {
 
     private static final Set<Class<? extends Throwable>> SUPPORTED_EXCEPTIONS = Set.of(
+            HandlerExceptionWrapper.class,
             IllegalArgumentException.class
     );
 
@@ -24,6 +26,10 @@ public class JavaExceptionResolver implements ErrorResolver {
     @Override
     public void resolve(Throwable error, HttpRequest request, HttpResponse response) {
         assert supports(error);
+
+        if (error instanceof HandlerExceptionWrapper wrapper) {
+            error = wrapper.getCause();
+        }
 
         if (error instanceof IllegalArgumentException) {
             response.setStatusCode(HttpStatus.BAD_REQUEST); // Bad Request
