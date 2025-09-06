@@ -1,2 +1,2 @@
-rootProject.name = "Smoodi-Web"
+rootProject.name = "smoodi-web"
 

@@ -1,26 +1,45 @@
+import org.jreleaser.model.Active
+
 plugins {
     id("java")
     id("java-library")
     id("maven-publish")
+    id("org.jreleaser") version "1.17.0"
+    id("io.freefair.lombok") version "8.4"
 }
 
 group = "org.smoodi.web"
+version = "0.1.0"
 
 repositories {
-    maven {
-        name = "GitHubPackages"
-        url = uri("https://maven.pkg.github.com/Project-Smoodi/Smoodi-Core")
-    }
     mavenCentral()
 }
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
+    withJavadocJar()
+    withSourcesJar()
 }
 
 dependencies {
-    implementation("org.smoodi.framework:smoodi-core:0.0.1-ALPHA")
+    api("org.smoodi.core:smoodi-core:0.1.5")
+    api("org.smoodi.physalus:physalus:0.1.0")
 
+    // Serialization
+    api("com.fasterxml.jackson.core:jackson-databind:2.15.0")
+    api("jakarta.xml.bind:jakarta.xml.bind-api:4.0.0")
+    api("org.glassfish.jaxb:jaxb-runtime:4.0.0")
+
+    // Logger
+    api("org.slf4j:slf4j-api:2.0.13")
+    implementation("ch.qos.logback:logback-core:1.5.13")
+    implementation("ch.qos.logback:logback-classic:1.5.13")
+
+    // Lombok
+    compileOnly("org.projectlombok:lombok:1.18.30")
+    annotationProcessor("org.projectlombok:lombok:1.18.30")
+
+    // Test
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
@@ -40,15 +59,19 @@ tasks.withType<JavaCompile> {
     )
 }
 
+tasks.named("jreleaserFullRelease") {
+    dependsOn("publish")
+}
+
+tasks.named("jreleaserDeploy") {
+    dependsOn("publish")
+}
+
 publishing {
 
     publications {
         create<MavenPublication>("mavenJava") {
             from(components["java"])
-
-            groupId = "org.smoodi.framework"
-            artifactId = "smoodi-web"
-            version = "0.0.1-SNAPSHOT"
 
             pom {
                 name.set("Smoodi Framework Web")
@@ -66,7 +89,6 @@ publishing {
                     developer {
                         id.set("Daybreak312")
                         name.set("Daybreak312")
-                        email.set("ty82afg12@gmail.com")
                     }
                 }
 
@@ -81,11 +103,43 @@ publishing {
 
     repositories {
         maven {
-            name = "Smoodi-Framework-Web"
-            url = uri("https://maven.pkg.github.com/Project-Smoodi/Smoodi-Web")
-            credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.token") as String? ?: System.getenv("TOKEN")
+            name = "staging"
+            url = uri(layout.buildDirectory.dir("staging-deploy").get().asFile.absolutePath)
+        }
+    }
+}
+
+jreleaser {
+    signing {
+        active.set(Active.RELEASE)
+        armored = true
+    }
+    deploy {
+        maven {
+            mavenCentral {
+                create("sonatype") {
+                    active.set(Active.RELEASE)
+                    url.set("https://central.sonatype.com/api/v1/publisher")
+                    stagingRepository(layout.buildDirectory.dir("staging-deploy").get().asFile.absolutePath)
+                }
+            }
+            nexus2 {
+                create("sonatype-snapshots") {
+                    active.set(Active.SNAPSHOT)
+                    url.set("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+                    snapshotUrl.set("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+                    applyMavenCentralRules.set(true)
+                }
+            }
+        }
+    }
+    release {
+        github {
+            tagName.set("v{{projectVersion}}")
+            releaseName.set("Release v{{projectVersion}}")
+            changelog {
+                formatted.set( Active.ALWAYS)
+                preset.set("conventional-commits")
             }
         }
     }
