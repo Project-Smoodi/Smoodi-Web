@@ -26,9 +26,9 @@ public @interface RequestPath {
      * <p>아래와 같이 경로 일부를 중괄호( {} )로 감싸 {@link PathParam}에서 참조 가능</p>
      *
      * <pre>
-     *     &#64RequestPath(path = "api/{num}")
+     *     &#064;RequestPath(path = "api/{num}")
      *     public void api(
-     *         &#064PathParam("num") int num
+     *         &#064;PathParam("num") int num
      *     ) { ... }
      * </pre>
      *

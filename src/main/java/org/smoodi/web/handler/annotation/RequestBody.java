@@ -14,9 +14,9 @@ import java.lang.annotation.*;
  * <p>매개변수의 타입은 역직렬화를 위한 VO여야 한다.</p>
  *
  * <pre>
- *     &#064RequestPath(path = "/api", parameters = {"key"})
+ *     &#064;RequestPath(path = "/api", parameters = {"key"})
  *     public void api(
- *         &#064RequestBody
+ *         &#064;RequestBody
  *         RequestValueObject value
  *     ) { ... }
  * </pre>

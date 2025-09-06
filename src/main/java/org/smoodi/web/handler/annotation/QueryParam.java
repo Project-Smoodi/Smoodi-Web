@@ -6,9 +6,9 @@ import java.lang.annotation.*;
  * <p>Handler의 메소드에서, 요청의 Query-String 파라미터를 주입할 매개변수임을 표시.</p>
  *
  * <pre>
- *     &#064RequestPath(path = "/api", parameters = {"key"})
+ *     &#064;RequestPath(path = "/api", parameters = {"key"})
  *     public void api(
- *         &#064QueryParam("key") String value
+ *         &#064;QueryParam("key") String value
  *     ) { ... }
  * </pre>
  *

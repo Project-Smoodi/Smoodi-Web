@@ -1,8 +1,6 @@
 package org.smoodi.web.handler.argument;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.smoodi.core.annotation.Module;
-import org.smoodi.net.config.DefaultJacksonConfiguration;
 import org.smoodi.physalus.transfer.http.ContentType;
 import org.smoodi.physalus.transfer.http.HttpRequest;
 import org.smoodi.web.handler.MethodHandler;

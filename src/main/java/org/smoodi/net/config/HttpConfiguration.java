@@ -3,8 +3,8 @@ package org.smoodi.net.config;
 /**
  * <p>HTTP 서버 관련 설정.</p>
  *
- * @since v0.0.1
  * @author Daybreak312
+ * @since v0.0.1
  */
 public interface HttpConfiguration {
 
@@ -26,8 +26,8 @@ public interface HttpConfiguration {
     /**
      * JSON에서의 key 표기법
      *
-     * @since v0.0.1
      * @author Daybreak312
+     * @since v0.0.1
      */
     enum JsonKeyCase {
 
