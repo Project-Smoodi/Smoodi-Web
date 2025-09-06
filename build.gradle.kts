@@ -48,6 +48,15 @@ tasks.test {
     useJUnitPlatform()
 }
 
+tasks.javadoc {
+    options {
+        (this as StandardJavadocDocletOptions).apply {
+            // Unable warnings of missing documentation
+            addStringOption("Xdoclint:all,-missing", "-quiet")
+        }
+    }
+}
+
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
     options.compilerArgs.addAll(
